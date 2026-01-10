@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CRM Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 AI CRM Assistant</h1>
+                <p>Intelligent Customer Relationship Management</p>
+            </div>
+            <div class="status" id="status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Checking...</span>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <button class="nav-link active" data-tab="home">🏠 Home</button>
+                <button class="nav-link" data-tab="solution">💡 Solution</button>
+                <button class="nav-link" data-tab="product">📦 Product</button>
+                <button class="nav-link" data-tab="learn">📚 Learn</button>
+                <button class="nav-link" data-tab="contact">📞 Contact</button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Sidebar - Tools -->
+            <aside class="sidebar">
+                <section class="tools-panel">
+                    <h2>📋 Available Tools</h2>
+                    <div id="toolsList" class="tools-list">
+                        <div class="loading">Loading tools...</div>
+                    </div>
+                </section>
+
+                <section class="memory-panel">
+                    <h2>💭 Recent Activity</h2>
+                    <div id="memoryList" class="memory-list">
+                        <div class="empty-state">No activity yet</div>
+                    </div>
+                    <button class="btn-clear" id="clearMemory">Clear Memory</button>
+                </section>
+            </aside>
+
+            <!-- Main Content - Tab Pages -->
+            <div class="content">
+
+                <!-- HOME PAGE -->
+                <div id="home" class="tab-page active">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>🏠 Welcome to AI CRM Assistant</h2>
+                        </div>
+                        <div class="welcome-content">
+                            <p>Intelligent Customer Relationship Management powered by AI</p>
+                            <div class="features-list">
+                                <div class="feature-box">
+                                    <h3>🔍 Smart Search</h3>
+                                    <p>Search customers by name, email, or company instantly</p>
+                                </div>
+                                <div class="feature-box">
+                                    <h3>➕ Create & Manage</h3>
+                                    <p>Add new customers and manage all their information</p>
+                                </div>
+                                <div class="feature-box">
+                                    <h3>✏️ Update Records</h3>
+                                    <p>Keep customer information always up to date</p>
+                                </div>
+                                <div class="feature-box">
+                                    <h3>📊 Analytics</h3>
+                                    <p>View system statistics and activity reports</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Search Customers -->
+                    <section class="card search-card">
+                        <div class="card-header">
+                            <h2>🔍 Search Customers</h2>
+                            <span class="tool-badge">search_customers</span>
+                        </div>
+                        <form id="searchForm" class="form">
+                            <div class="form-group">
+                                <label for="searchQuery">Search Query:</label>
+                                <input 
+                                    type="text" 
+                                    id="searchQuery" 
+                                    name="query"
+                                    placeholder="Enter name, email, or company"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="searchLimit">Results Limit:</label>
+                                <input 
+                                    type="number" 
+                                    id="searchLimit" 
+                                    name="limit"
+                                    value="10"
+                                    min="1"
+                                    max="100"
+                                >
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                        <div id="searchResults" class="results hidden">
+                            <h3>Search Results</h3>
+                            <div id="searchResultsList"></div>
+                        </div>
+                    </section>
+
+                    <!-- Stats -->
+                    <section class="card stats-card">
+                        <div class="card-header">
+                            <h2>📊 System Information</h2>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-label">Agent Name</div>
+                                <div class="stat-value" id="agentName">-</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Version</div>
+                                <div class="stat-value" id="agentVersion">-</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Available Tools</div>
+                                <div class="stat-value" id="toolCount">-</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Status</div>
+                                <div class="stat-value" id="agentStatus">-</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- SOLUTION PAGE -->
+                <div id="solution" class="tab-page">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>💡 CRM Solutions</h2>
+                        </div>
+                        <div class="page-content">
+                            <h3>Our Solutions</h3>
+                            <div class="solutions-grid">
+                                <div class="solution-box">
+                                    <h4>📱 Mobile CRM</h4>
+                                    <p>Access customer data from anywhere, anytime with our mobile application</p>
+                                </div>
+                                <div class="solution-box">
+                                    <h4>🤖 AI-Powered Analytics</h4>
+                                    <p>Get intelligent insights and predictions from your customer data</p>
+                                </div>
+                                <div class="solution-box">
+                                    <h4>🔗 Integration Services</h4>
+                                    <p>Seamlessly integrate with your existing business systems</p>
+                                </div>
+                                <div class="solution-box">
+                                    <h4>📊 Advanced Reporting</h4>
+                                    <p>Create custom reports and dashboards for better decision making</p>
+                                </div>
+                                <div class="solution-box">
+                                    <h4>🔐 Data Security</h4>
+                                    <p>Enterprise-grade security to protect your valuable customer data</p>
+                                </div>
+                                <div class="solution-box">
+                                    <h4>☁️ Cloud Hosting</h4>
+                                    <p>Reliable, scalable cloud infrastructure for your business</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>💬 Request a Solution</h2>
+                        </div>
+                        <form id="solutionForm" class="form">
+                            <div class="form-group">
+                                <label for="solutionName">Company Name:</label>
+                                <input type="text" id="solutionName" required placeholder="Your company name">
+                            </div>
+                            <div class="form-group">
+                                <label for="solutionEmail">Email:</label>
+                                <input type="email" id="solutionEmail" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="solutionType">Solution Type:</label>
+                                <select id="solutionType" required>
+                                    <option value="">Select a solution...</option>
+                                    <option value="mobile">Mobile CRM</option>
+                                    <option value="analytics">AI Analytics</option>
+                                    <option value="integration">Integration Services</option>
+                                    <option value="reporting">Advanced Reporting</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="solutionMessage">Details:</label>
+                                <textarea id="solutionMessage" rows="4" placeholder="Describe your needs..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Request Solution</button>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- PRODUCT PAGE -->
+                <div id="product" class="tab-page">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>📦 Create Customer</h2>
+                            <span class="tool-badge">create_customer</span>
+                        </div>
+                        <form id="createForm" class="form">
+                            <div class="form-group">
+                                <label for="customerName">Full Name:</label>
+                                <input 
+                                    type="text" 
+                                    id="customerName" 
+                                    name="name"
+                                    placeholder="John Doe"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="customerEmail">Email Address:</label>
+                                <input 
+                                    type="email" 
+                                    id="customerEmail" 
+                                    name="email"
+                                    placeholder="john@example.com"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="customerCompany">Company:</label>
+                                <input 
+                                    type="text" 
+                                    id="customerCompany" 
+                                    name="company"
+                                    placeholder="Acme Corp"
+                                    required
+                                >
+                            </div>
+                            <button type="submit" class="btn btn-success">Create Customer</button>
+                        </form>
+                        <div id="createResult" class="result hidden">
+                            <div id="createResultContent"></div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>✏️ Update Customer</h2>
+                            <span class="tool-badge">update_customer</span>
+                        </div>
+                        <form id="updateForm" class="form">
+                            <div class="form-group">
+                                <label for="updateCustomerId">Customer ID:</label>
+                                <input 
+                                    type="number" 
+                                    id="updateCustomerId" 
+                                    name="id"
+                                    placeholder="1"
+                                    min="1"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="updateCustomerName">Name:</label>
+                                <input 
+                                    type="text" 
+                                    id="updateCustomerName" 
+                                    name="name"
+                                    placeholder="Full Name"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="updateCustomerEmail">Email:</label>
+                                <input 
+                                    type="email" 
+                                    id="updateCustomerEmail" 
+                                    name="email"
+                                    placeholder="email@example.com"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="updateCustomerCompany">Company:</label>
+                                <input 
+                                    type="text" 
+                                    id="updateCustomerCompany" 
+                                    name="company"
+                                    placeholder="Company Name"
+                                    required
+                                >
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Customer</button>
+                        </form>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>🗑️ Delete Customer</h2>
+                            <span class="tool-badge">delete_customer</span>
+                        </div>
+                        <form id="deleteForm" class="form">
+                            <div class="form-group">
+                                <label for="deleteCustomerId">Customer ID:</label>
+                                <input 
+                                    type="number" 
+                                    id="deleteCustomerId" 
+                                    name="id"
+                                    placeholder="Enter customer ID"
+                                    min="1"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group info-box">
+                                <p>⚠️ This action is permanent and cannot be undone.</p>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Delete Customer</button>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- LEARN PAGE -->
+                <div id="learn" class="tab-page">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>📚 Learn & Documentation</h2>
+                        </div>
+                        <div class="page-content">
+                            <h3>Getting Started Guide</h3>
+                            <div class="learn-sections">
+                                <div class="learn-box">
+                                    <h4>1️⃣ Create Your First Customer</h4>
+                                    <p>Go to the Product tab and use the Create Customer form to add a new customer to your database.</p>
+                                    <code>Fill in: Name, Email, Company</code>
+                                </div>
+                                <div class="learn-box">
+                                    <h4>2️⃣ Search for Customers</h4>
+                                    <p>Use the search feature on the Home page to find customers by name, email, or company.</p>
+                                    <code>Search by: Name, Email, or Company</code>
+                                </div>
+                                <div class="learn-box">
+                                    <h4>3️⃣ Update Customer Information</h4>
+                                    <p>Click on the Update Customer form in the Product tab to modify existing customer details.</p>
+                                    <code>Provide: Customer ID and new details</code>
+                                </div>
+                                <div class="learn-box">
+                                    <h4>4️⃣ Delete a Customer</h4>
+                                    <p>Use the Delete Customer form to remove a customer from the system (irreversible action).</p>
+                                    <code>Required: Customer ID only</code>
+                                </div>
+                                <div class="learn-box">
+                                    <h4>🎓 API Documentation</h4>
+                                    <p>Access our API documentation at <code>/docs</code> for advanced integration</p>
+                                    <p>Full Swagger UI documentation available for developers</p>
+                                </div>
+                                <div class="learn-box">
+                                    <h4>🔧 System Information</h4>
+                                    <p>Check the system information panel on the Home page for API status and available tools</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>❓ FAQ</h2>
+                        </div>
+                        <div class="faq-section">
+                            <details>
+                                <summary>What is AI CRM Assistant?</summary>
+                                <p>AI CRM Assistant is an intelligent customer relationship management system powered by artificial intelligence to help you manage and track customer information efficiently.</p>
+                            </details>
+                            <details>
+                                <summary>How do I create a new customer?</summary>
+                                <p>Go to the Product tab, fill in the Create Customer form with name, email, and company, then click Create.</p>
+                            </details>
+                            <details>
+                                <summary>Can I recover deleted customers?</summary>
+                                <p>No, deletion is permanent. Make sure you have the correct customer ID before deleting.</p>
+                            </details>
+                            <details>
+                                <summary>Is my data secure?</summary>
+                                <p>Yes, all customer data is stored securely and protected with industry-standard security measures.</p>
+                            </details>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- CONTACT PAGE -->
+                <div id="contact" class="tab-page">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>📞 Contact Us</h2>
+                        </div>
+                        <form id="contactForm" class="form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Your Name:</label>
+                                    <input 
+                                        type="text" 
+                                        id="contactName" 
+                                        placeholder="John Doe"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Your Email:</label>
+                                    <input 
+                                        type="email" 
+                                        id="contactEmail" 
+                                        placeholder="john@example.com"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone Number:</label>
+                                    <input 
+                                        type="tel" 
+                                        id="contactPhone" 
+                                        placeholder="+1 (555) 000-0000"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactCompany">Company:</label>
+                                    <input 
+                                        type="text" 
+                                        id="contactCompany" 
+                                        placeholder="Your Company"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactSubject">Subject:</label>
+                                <select id="contactSubject" required>
+                                    <option value="">Select subject...</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="sales">Sales Inquiry</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Message:</label>
+                                <textarea 
+                                    id="contactMessage" 
+                                    rows="6" 
+                                    placeholder="Tell us more about your inquiry..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <div id="contactResult" class="result hidden">
+                            <div id="contactResultContent"></div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>📍 Contact Information</h2>
+                        </div>
+                        <div class="contact-info-grid">
+                            <div class="contact-info-box">
+                                <h4>📧 Email</h4>
+                                <p><a href="mailto:support@aicrmassistant.com">support@aicrmassistant.com</a></p>
+                                <p><a href="mailto:sales@aicrmassistant.com">sales@aicrmassistant.com</a></p>
+                            </div>
+                            <div class="contact-info-box">
+                                <h4>📞 Phone</h4>
+                                <p><a href="tel:+1-555-000-0000">+1 (555) 000-0000</a></p>
+                                <p>Mon - Fri, 9AM - 6PM (EST)</p>
+                            </div>
+                            <div class="contact-info-box">
+                                <h4>🌐 Website</h4>
+                                <p><a href="https://www.aicrmassistant.com" target="_blank">www.aicrmassistant.com</a></p>
+                            </div>
+                            <div class="contact-info-box">
+                                <h4>📍 Address</h4>
+                                <p>123 CRM Street<br>Tech City, TC 12345<br>United States</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AI Chatbot Web Agent - CRM Assistant | Built with FastAPI & Modern Web Technologies</p>
+        </footer>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Confirm Delete</h3>
+            <p id="confirmMessage">Are you sure you want to delete this customer?</p>
+            <div class="modal-buttons">
+                <button id="confirmYes" class="btn btn-danger">Yes, Delete</button>
+                <button id="confirmNo" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

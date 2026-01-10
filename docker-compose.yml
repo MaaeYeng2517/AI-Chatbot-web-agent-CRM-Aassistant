@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # Backend API Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-crm-api
+    ports:
+      - "8000:8000"
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - DEBUG=False
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-your-key-here}
+      - OPENAI_MODEL=gpt-4
+      - DATABASE_URL=sqlite:///./ai_agent.db
+      - AGENT_NAME=AI-CRM-Assistant
+      - AGENT_VERSION=1.0.0
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./src:/app/src
+      - ./config.py:/app/config.py
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Frontend Service (optional - for development)
+  frontend:
+    image: python:3.11-slim
+    container_name: ai-crm-frontend
+    working_dir: /app
+    command: python frontend/server.py
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app/frontend
+      - ./config.py:/app/config.py
+    networks:
+      - ai-network
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+networks:
+  ai-network:
+    driver: bridge
+
+volumes:
+  api_data:
+    driver: local
