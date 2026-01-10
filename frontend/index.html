@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI CRM Assistant</title>
+    <title>ผู้ช่วยจัดการลูกค้า AI CRM</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,23 +11,24 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <h1>🤖 AI CRM Assistant</h1>
-                <p>Intelligent Customer Relationship Management</p>
+                <h1>🤖 ผู้ช่วยจัดการลูกค้า AI CRM</h1>
+                <p>ระบบจัดการสัมพันธ์ลูกค้าที่ใช้ปัญญาประดิษฐ์</p>
             </div>
             <div class="status" id="status">
                 <span class="status-dot" id="statusDot"></span>
-                <span id="statusText">Checking...</span>
+                <span id="statusText">กำลังตรวจสอบ...</span>
             </div>
         </header>
 
         <!-- Navigation Bar -->
-        <nav class="navbar">
+        <nav class="navbar bg-warning">
             <div class="nav-wrapper">
-                <button class="nav-link active" data-tab="home">🏠 Home</button>
-                <button class="nav-link" data-tab="solution">💡 Solution</button>
-                <button class="nav-link" data-tab="product">📦 Product</button>
-                <button class="nav-link" data-tab="learn">📚 Learn</button>
-                <button class="nav-link" data-tab="contact">📞 Contact</button>
+                <a href="" class="nav-link active" data-tab="home">🏠 หน้าแรก</a>
+                <a href="/solution.html" class="nav-link" data-tab="solution">💡 โซลูชั่น</a>
+                <a href="/product.html" class="nav-link" data-tab="product">📦 สินค้า</a>
+                <a href="/price.html" class="nav-link" data-tab="learn">📚 ราคา</a>
+                <a href="/learning.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
+                <a href="/contact.html" class="nav-link" data-tab="contact">📞 ติดต่อ</a>
             </div>
         </nav>
 
@@ -35,18 +36,18 @@
             <!-- Sidebar - Tools -->
             <aside class="sidebar">
                 <section class="tools-panel">
-                    <h2>📋 Available Tools</h2>
+                    <h2>📋 เครื่องมือที่มีอยู่</h2>
                     <div id="toolsList" class="tools-list">
-                        <div class="loading">Loading tools...</div>
+                        <div class="loading">กำลังโหลดเครื่องมือ...</div>
                     </div>
                 </section>
 
                 <section class="memory-panel">
-                    <h2>💭 Recent Activity</h2>
+                    <h2>💭 กิจกรรมล่าสุด</h2>
                     <div id="memoryList" class="memory-list">
-                        <div class="empty-state">No activity yet</div>
+                        <div class="empty-state">ไม่มีกิจกรรมเลย</div>
                     </div>
-                    <button class="btn-clear" id="clearMemory">Clear Memory</button>
+                    <button class="btn-clear" id="clearMemory">ล้างหน่วยความจำ</button>
                 </section>
             </aside>
 
@@ -57,22 +58,22 @@
                     <!-- Search Customers Section -->
                     <section class="card search-card">
                         <div class="card-header">
-                            <h2>🔍 Search Customers</h2>
+                            <h2>🔍 ค้นหาลูกค้า</h2>
                             <span class="tool-badge">search_customers</span>
                         </div>
                         <form id="searchForm" class="form">
                             <div class="form-group">
-                                <label for="searchQuery">Search Query:</label>
+                                <label for="searchQuery">ค้นหา:</label>
                             <input 
                                 type="text" 
                                 id="searchQuery" 
                                 name="query"
-                                placeholder="Enter name, email, or company"
+                                placeholder="ป้อนชื่อ อีเมล หรือบริษัท"
                                 required
                             >
                         </div>
                         <div class="form-group">
-                            <label for="searchLimit">Results Limit:</label>
+                            <label for="searchLimit">ขีด จำกัด ผลลัพธ์:</label>
                             <input 
                                 type="number" 
                                 id="searchLimit" 
@@ -82,10 +83,10 @@
                                 max="100"
                             >
                         </div>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary">ค้นหา</button>
                     </form>
                     <div id="searchResults" class="results hidden">
-                        <h3>Search Results</h3>
+                        <h3>ผลลัพธ์การค้นหา</h3>
                         <div id="searchResultsList"></div>
                     </div>
                 </section>
@@ -93,7 +94,7 @@
                 <!-- Create Customer Section -->
                 <section class="card create-card">
                     <div class="card-header">
-                        <h2>➕ Create Customer</h2>
+                        <h2>➕ สร้างลูกค้า</h2>
                         <span class="tool-badge">create_customer</span>
                     </div>
                     <form id="createForm" class="form">

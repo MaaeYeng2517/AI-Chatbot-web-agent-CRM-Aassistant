@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โซลูชั่น - ผู้ช่วยจัดการลูกค้า AI CRM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 ผู้ช่วยจัดการลูกค้า AI CRM</h1>
+                <p>ระบบจัดการสัมพันธ์ลูกค้าที่ใช้ปัญญาประดิษฐ์</p>
+            </div>
+            <div class="status" id="status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">กำลังตรวจสอบ...</span>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <a href="index.html" class="nav-link" data-tab="home">🏠 หน้าแรก</a>
+                <a href="solution.html" class="nav-link active" data-tab="solution">💡 โซลูชั่น</a>
+                <a href="product.html" class="nav-link" data-tab="product">📦 สินค้า</a>
+                <a href="learn.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
+                <a href="contact.html" class="nav-link" data-tab="contact">📞 ติดต่อ</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <section class="tools-panel">
+                    <h2>📋 โซลูชั่น</h2>
+                    <div id="solutionMenu" class="tools-list">
+                        <a href="#customer-management" class="tool-item" onclick="scrollToSection('customer-management')">👥 การจัดการลูกค้า</a>
+                        <a href="#sales-automation" class="tool-item" onclick="scrollToSection('sales-automation')">📈 การขายอัตโนมัติ</a>
+                        <a href="#analytics" class="tool-item" onclick="scrollToSection('analytics')">📊 วิเคราะห์ข้อมูล</a>
+                        <a href="#integration" class="tool-item" onclick="scrollToSection('integration')">🔗 การรวมเข้า</a>
+                        <a href="#ai-features" class="tool-item" onclick="scrollToSection('ai-features')">🤖 คุณสมบัติ AI</a>
+                    </div>
+                </section>
+
+                <section class="memory-panel">
+                    <h2>💡 ประโยชน์</h2>
+                    <div style="padding: 1rem;">
+                        <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(99, 102, 241, 0.1); border-radius: 0.5rem;">
+                            <strong>⚡ แบบเรียลไทม์</strong><br>
+                            <small>ซิงค์ข้อมูลทันที</small>
+                        </div>
+                        <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem;">
+                            <strong>🔒 ปลอดภัย</strong><br>
+                            <small>ระดับองค์กร</small>
+                        </div>
+                        <div style="padding: 0.75rem; background: rgba(139, 92, 246, 0.1); border-radius: 0.5rem;">
+                            <strong>🚀 ปรับขยายได้</strong><br>
+                            <small>เติบโตไปกับคุณ</small>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="content">
+                <!-- Hero Section -->
+                <section class="card hero-section">
+                    <div style="text-align: center; padding: 2rem;">
+                        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">🎯 โซลูชั่นของเรา</h1>
+                        <p style="font-size: 1.1rem; color: #cbd5e1; max-width: 600px; margin: 0 auto;">
+                            โซลูชั่นที่ใช้ปัญญาประดิษฐ์ที่ออกแบบมาเพื่อแปลงวิธีการจัดการลูกค้าของคุณและขับเคลื่อนการเติบโตของธุรกิจ
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Customer Management Solution -->
+                <section class="card solution-card" id="customer-management">
+                    <div class="card-header">
+                        <h2>👥 โซลูชั่นการจัดการลูกค้า</h2>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1.5rem;">
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">คุณสมบัติหลัก</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;">
+                                    <span style="font-size: 1.5rem; margin-right: 0.5rem;">✅</span>
+                                    <span>ฐานข้อมูลลูกค้าเรียบเรียง</span>
+                                </li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;">
+                                    <span style="font-size: 1.5rem; margin-right: 0.5rem;">✅</span>
+                                    <span>มุมมองลูกค้า 360 องศา</span>
+                                </li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;">
+                                    <span style="font-size: 1.5rem; margin-right: 0.5rem;">✅</span>
+                                    <span>การติดตามประวัติการโต้ตอบ</span>
+                                </li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;">
+                                    <span style="font-size: 1.5rem; margin-right: 0.5rem;">✅</span>
+                                    <span>การเพิ่มข้อมูลอัตโนมัติ</span>
+                                </li>
+                                <li style="display: flex; align-items: center;">
+                                    <span style="font-size: 1.5rem; margin-right: 0.5rem;">✅</span>
+                                    <span>การตรวจจับและรวมข้อมูลซ้ำ</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">ประโยชน์</h3>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
+                                <p style="margin: 0.5rem 0;"><strong>เพิ่มประสิทธิภาพ</strong> - ลดการป้อนข้อมูลด้วยตนเองลง 80%</p>
+                                <p style="margin: 0.5rem 0;"><strong>บริการที่ดีขึ้น</strong> - ตอบสนองได้เร็วขึ้นด้วยข้อมูลลูกค้าที่ครบถ้วน</p>
+                                <p style="margin: 0.5rem 0;"><strong>การรักษาต่อกลับสูงขึ้น</strong> - ปฏิสัมพันธ์ส่วนบุคคลเพิ่มความภักดี</p>
+                                <p style="margin: 0.5rem 0;"><strong>คุณภาพข้อมูล</strong> - ข้อมูลที่ถูกต้องและทันสมัยเสมอ</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sales Automation Solution -->
+                <section class="card solution-card" id="sales-automation">
+                    <div class="card-header">
+                        <h2>📈 โซลูชั่นการขายอัตโนมัติ</h2>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1.5rem;">
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">สิ่งที่คุณได้รับ</h3>
+                            <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h4 style="margin-bottom: 0.5rem;">การให้คะแนนลีด</h4>
+                                    <p style="margin: 0; font-size: 0.9rem;">การจำแนกลีดด้วยปัญญาประดิษฐ์</p>
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h4 style="margin-bottom: 0.5rem;">การจัดการไปป์ไลน์</h4>
+                                    <p style="margin: 0; font-size: 0.9rem;">การติดตามไปป์ไลน์การขายแบบภาพ</p>
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h4 style="margin-bottom: 0.5rem;">เวิร์กโฟลว์อัตโนมัติ</h4>
+                                    <p style="margin: 0; font-size: 0.9rem;">การดำเนินการและติดตามผลตามเงื่อนไข</p>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem;">การพยากรณ์</h4>
+                                    <p style="margin: 0; font-size: 0.9rem;">ข้อมูลเชิงลึกรายได้เชิงทำนาย</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">ผลลัพธ์</h3>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                                <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
+                                    <div style="font-size: 1.8rem; font-weight: bold; color: #22c55e;">45%</div>
+                                    <p style="margin: 0.5rem 0 0 0;">วัฏจักรการขายเร็วขึ้น</p>
+                                </div>
+                                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                                    <div style="font-size: 1.8rem; font-weight: bold; color: #3b82f6;">60%</div>
+                                    <p style="margin: 0.5rem 0 0 0;">เพิ่มอัตราการปิด</p>
+                                </div>
+                                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+                                    <div style="font-size: 1.8rem; font-weight: bold; color: #a855f7;">35%</div>
+                                    <p style="margin: 0.5rem 0 0 0;">เพิ่มรายได้</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Solution -->
+                <section class="card solution-card" id="analytics">
+                    <div class="card-header">
+                        <h2>📊 โซลูชั่นการวิเคราะห์และรายงาน</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📈</div>
+                                <h4 style="margin: 0.5rem 0;">การวิเคราะห์การขาย</h4>
+                                <p style="margin: 0; font-size: 0.85rem;">การติดตาม KPI แบบเรียลไทม์</p>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">👥</div>
+                                <h4 style="margin: 0.5rem 0;">ข้อมูลเชิงลึกลูกค้า</h4>
+                                <p style="margin: 0; font-size: 0.85rem;">การวิเคราะห์พฤติกรรมและความชอบ</p>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💰</div>
+                                <h4 style="margin: 0.5rem 0;">ข้อมูลเชิงลึกรายได้</h4>
+                                <p style="margin: 0; font-size: 0.85rem;">การวิเคราะห์ LTV และการสูญหาย</p>
+                            </div>
+                            <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎯</div>
+                                <h4 style="margin: 0.5rem 0;">รายงานแบบกำหนดเอง</h4>
+                                <p style="margin: 0; font-size: 0.85rem;">การวางแผนอัตโนมัติ</p>
+                            </div>
+                        </div>
+                        <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                            <h4 style="margin-top: 0;">ความสามารถขั้นสูง</h4>
+                            <ul style="list-style-position: inside; padding-left: 1rem;">
+                                <li>การวิเคราะห์เชิงทำนายด้วยแมชชีนเลิร์นนิง</li>
+                                <li>ตัวสร้างแดชบอร์ดแบบกำหนดเอง</li>
+                                <li>ความสามารถในการวิเคราะห์เชิงลึก</li>
+                                <li>การส่งออกข้อมูลในหลายรูปแบบ (PDF, Excel, CSV)</li>
+                                <li>การส่งรายงานตามตารางเวลาผ่านอีเมล</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Integration Solution -->
+                <section class="card solution-card" id="integration">
+                    <div class="card-header">
+                        <h2>🔗 โซลูชั่นการรวมและการเชื่อมต่อ</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                            <div>
+                                <h3 style="margin-bottom: 1rem;">การรวมที่สร้างไว้ล่วงหน้า</h3>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; border: 1px solid #334155;">Salesforce</div>
+                                    <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; border: 1px solid #334155;">HubSpot</div>
+                                    <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; border: 1px solid #334155;">Microsoft Teams</div>
+                                    <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; border: 1px solid #334155;">Slack</div>
+                                    <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; border: 1px solid #334155;">Gmail/Outlook</div>
+                                    <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; border: 1px solid #334155;">Stripe</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 1rem;">เครื่องมือ API และนักพัฒนา</h3>
+                                <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                    <p><strong>REST API</strong> - เอกสารประกอบ API ที่ครอบคลุม</p>
+                                    <p><strong>Webhooks</strong> - การแจ้งเตือนเหตุการณ์แบบเรียลไทม์</p>
+                                    <p><strong>ไลบรารี SDK</strong> - สำหรับ Python, JavaScript, Java</p>
+                                    <p><strong>การรวม Zapier</strong> - เชื่อมต่อแอป 1000+ รายการ</p>
+                                    <p><strong>การรวมแบบกำหนดเอง</strong> - บริการมืออาชีพพร้อมให้</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Features Solution -->
+                <section class="card solution-card" id="ai-features">
+                    <div class="card-header">
+                        <h2>🤖 คุณสมบัติที่ขับเคลื่อนด้วย AI</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🎯 การกำหนดเส้นทางลีดอัจฉริยะ</h4>
+                                <p>กำหนดลีดให้แก่ตัวแทนจำหน่ายที่เหมาะสมโดยอัตโนมัติตามทักษะ ความจุ และพื้นที่</p>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">💬 ผู้ช่วย AI Chat</h4>
+                                <p>บริการลูกค้า 24/7 ด้วยการประมวลผลภาษาธรรมชาติและการตอบสนองที่ชาญฉลาด</p>
+                            </div>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🔮 ข้อมูลเชิงลึกเชิงทำนาย</h4>
+                                <p>แบบจำลองแมชชีนเลิร์นนิงทำนายการสูญหายลูกค้า ความเชื่อมั่นในการซื้อ และมูลค่าตลอดอายุการใช้</p>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">📧 คำแนะนำสมาร์ท</h4>
+                                <p>AI แนะนำการดำเนินการถัดไปที่ดีที่สุดและข้อเสนอที่ปรับแต่งบนพื้นฐานพฤติกรรมลูกค้า</p>
+                            </div>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🔍 การวิเคราะห์อารมณ์</h4>
+                                <p>ตรวจจับอารมณ์ลูกค้าจากอีเมล แชท และข้อเสนอแนะโดยอัตโนมัติ</p>
+                            </div>
+                            <div style="background: rgba(239, 68, 68, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🎤 ปัญญาเสียง</h4>
+                                <p>การถ่ายทำสายเรียกและการวิเคราะห์พร้อมการตรวจจับอารมณ์และการระบุช่วงเวลาหลัก</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="card" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); text-align: center; padding: 3rem;">
+                    <h2 style="color: white; margin-bottom: 1rem;">พร้อมที่จะแปลงธุรกิจของคุณหรือไม่?</h2>
+                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        สัมผัสพลังของการจัดการสัมพันธ์ลูกค้าที่ขับเคลื่อนด้วย AI
+                    </p>
+                    <button onclick="location.href='contact.html'" style="background: white; color: #6366f1; border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: bold; cursor: pointer; font-size: 1rem;">
+                        ติดต่อเรา
+                    </button>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>ผู้ช่วยจัดการ AI Chatbot Web Agent - CRM | สร้างด้วย FastAPI และเทคโนโลยี Web สมัยใหม่</p>
+        </footer>
+    </div>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Status check
+        async function checkStatus() {
+            try {
+                const response = await fetch('http://localhost:8000');
+                const data = await response.json();
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                statusDot.classList.add('online');
+                statusDot.classList.remove('offline');
+                statusText.textContent = 'Online';
+            } catch (error) {
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                statusDot.classList.add('offline');
+                statusDot.classList.remove('online');
+                statusText.textContent = 'Offline';
+            }
+        }
+
+        // Check status on load
+        checkStatus();
+        // Check every 30 seconds
+        setInterval(checkStatus, 30000);
+    </script>
+</body>
+</html>

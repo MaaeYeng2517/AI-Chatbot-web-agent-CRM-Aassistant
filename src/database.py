@@ -12,7 +12,9 @@ class CustomerDatabase:
     
     def __init__(self):
         self.customers: Dict[int, Dict] = {}
+        self.registrations: Dict[int, Dict] = {}
         self.next_id = 1
+        self.registration_id = 1
         logger.info("Customer database initialized")
     
     def create_customer(self, name: str, email: str, company: str, working: bool = True, travel: bool = False) -> Dict:
@@ -84,6 +86,39 @@ class CustomerDatabase:
             "total_customers": len(self.customers),
             "next_id": self.next_id,
         }
+    
+    def create_registration(self, full_name: str, email: str, phone: str, company: str, 
+                          plan: str, employees: str, industry: str, message: str, 
+                          newsletter: bool = False) -> Dict:
+        """Create a new plan registration"""
+        registration_id = self.registration_id
+        self.registration_id += 1
+        
+        registration = {
+            "id": registration_id,
+            "full_name": full_name,
+            "email": email,
+            "phone": phone,
+            "company": company,
+            "plan": plan,
+            "employees": employees,
+            "industry": industry,
+            "message": message,
+            "newsletter": newsletter,
+            "created_at": datetime.now().isoformat(),
+        }
+        
+        self.registrations[registration_id] = registration
+        logger.info(f"New registration: {full_name} for {plan} plan (ID: {registration_id})")
+        return registration
+    
+    def get_registrations(self) -> List[Dict]:
+        """Get all registrations"""
+        return list(self.registrations.values())
+    
+    def get_registration(self, registration_id: int) -> Optional[Dict]:
+        """Get a specific registration"""
+        return self.registrations.get(registration_id)
 
 
 # Global database instance

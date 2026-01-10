@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สินค้า - ผู้ช่วยจัดการลูกค้า AI CRM</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Product Page Styles */
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 1rem;
+            color: white;
+        }
+
+        .product-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .product-card .description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1rem 0;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-list li:before {
+            content: "✓ ";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            margin-top: 3rem;
+        }
+
+        .pricing-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .pricing-card.featured:before {
+            content: "Most Popular";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .plan-price .currency {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .plan-price .period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .plan-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .plan-features li:before {
+            content: "✓ ";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-button {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plan-button.primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .plan-button.primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .plan-button.secondary {
+            background: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .plan-button.secondary:hover {
+            background: #475569;
+            transform: translateY(-2px);
+        }
+
+        /* Membership Form Section */
+        .membership-section {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .membership-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .membership-form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .membership-form .form-group:nth-child(5),
+        .membership-form .form-group:nth-child(6),
+        .membership-form .form-group:nth-child(7),
+        .membership-form .form-group:nth-child(8) {
+            grid-column: span 1;
+        }
+
+        .membership-form .form-group:nth-child(9),
+        .membership-form button {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .products-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .membership-form {
+                grid-template-columns: 1fr;
+            }
+
+            .membership-form .form-group:nth-child(9),
+            .membership-form button {
+                grid-column: span 1;
+            }
+
+            .product-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 ผู้ช่วยจัดการลูกค้า AI CRM</h1>
+                <p>การจัดการลูกค้าแบบอัจฉริยะด้วยปัญญาประดิษฐ์</p>
+            </div>
+            <div class="status" id="status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Checking...</span>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <a href="index.html" class="nav-link" data-tab="home">🏠 หน้าแรก</a>
+                <a href="solution.html" class="nav-link" data-tab="solution">💡 โซลูชั่น</a>
+                <a href="product.html" class="nav-link active" data-tab="product">📦 สินค้า</a>
+                <a href="learn.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
+                <a href="contact.html" class="nav-link" data-tab="contact">📞 ติดต่อเรา</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <section class="tools-panel">
+                    <h2>📦 สินค้า</h2>
+                    <div id="productMenu" class="tools-list">
+                        <a href="#crm-core" class="tool-item" onclick="scrollToSection('crm-core')">📊 CRM Core</a>
+                        <a href="#ai-assistant" class="tool-item" onclick="scrollToSection('ai-assistant')">🤖 ผู้ช่วย AI</a>
+                        <a href="#analytics-pro" class="tool-item" onclick="scrollToSection('analytics-pro')">📈 วิเคราะห์ Pro</a>
+                        <a href="#mobile-app" class="tool-item" onclick="scrollToSection('mobile-app')">📱 แอป Mobile</a>
+                        <a href="#enterprise" class="tool-item" onclick="scrollToSection('enterprise')">🏢 Enterprise</a>
+                        <a href="#pricing" class="tool-item" onclick="scrollToSection('pricing')">💰 ราคา</a>
+                    </div>
+                </section>
+
+                <section class="memory-panel">
+                    <h2>✨ คุณสมบัติ</h2>
+                    <div style="padding: 1rem;">
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                            • โซลูชั่น CRM ที่ครอบคลุม<br>
+                            • คุณสมบัติที่ขับเคลื่อนด้วย AI<br>
+                            • การวิเคราะห์แบบเรียลไทม์<br>
+                            • Mobile และ Desktop<br>
+                            • ความปลอดภัยระดับ Enterprise<br>
+                            • ฝ่ายสนับสนุน 24/7
+                        </p>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="content">
+        <div class="product-container">
+        <!-- Header -->
+        <div class="product-header">
+            <h1>🛍️ สินค้าของเรา</h1>
+            <p>โซลูชั่นที่ครอบคลุมสำหรับการจัดการความสัมพันธ์กับลูกค้า</p>
+        </div>
+
+        <!-- Products Section -->
+        <section class="products-grid">
+            <!-- Product 1: CRM Core -->
+            <div class="product-card" id="crm-core">
+                <div class="product-icon">📊</div>
+                <h3>CRM Core</h3>
+                <p class="description">ระบบจัดการความสัมพันธ์ลูกค้าที่สมบูรณ์พร้อมคุณสมบัติขั้นสูง</p>
+                <ul class="features-list">
+                    <li>การจัดการฐานข้อมูลลูกค้า</li>
+                    <li>การติดตามการติดต่อ</li>
+                    <li>การจัดการ Sales Pipeline</li>
+                    <li>รายงานแบบเรียลไทม์</li>
+                    <li>สนับสนุนการรวมเข้า API</li>
+                </ul>
+            </div>
+
+            <!-- Product 2: AI Assistant -->
+            <div class="product-card" id="ai-assistant">
+                <div class="product-icon">🤖</div>
+                <h3>ผู้ช่วย AI</h3>
+                <p class="description">ระบบการโต้ตอบกับลูกค้าที่ขับเคลื่อนด้วย AI อัจฉริยะ</p>
+                <ul class="features-list">
+                    <li>ค้นหาลูกค้าอย่างชาญฉลาด</li>
+                    <li>คำแนะนำที่ขับเคลื่อนด้วย AI</li>
+                    <li>การตอบสนองแบบอัตโนมัติ</li>
+                    <li>การประมวลผลภาษาธรรมชาติ</li>
+                    <li>การสนับสนุนอัตโนมัติ 24/7</li>
+                </ul>
+            </div>
+
+            <!-- Product 3: Analytics Pro -->
+            <div class="product-card" id="analytics-pro">
+                <div class="product-icon">📈</div>
+                <h3>วิเคราะห์ Pro</h3>
+                <p class="description">เครื่องมือวิเคราะห์ข้อมูลและปัญญาธุรกิจขั้นสูง</p>
+                <ul class="features-list">
+                    <li>Dashboard ที่กำหนดเอง</li>
+                    <li>การแสดงภาพข้อมูล</li>
+                    <li>การวิเคราะห์เชิงคาดการณ์</li>
+                    <li>เมตริกประสิทธิภาพ</li>
+                    <li>การส่งออก & รายงาน</li>
+                </ul>
+            </div>
+
+            <!-- Product 4: Mobile App -->
+            <div class="product-card" id="mobile-app">
+                <div class="product-icon">📱</div>
+                <h3>แอป Mobile</h3>
+                <p class="description">แอปพลิเคชันแบบเนทีฟสำหรับ iOS และ Android</p>
+                <ul class="features-list">
+                    <li>การเข้าถึงแบบออฟไลน์</li>
+                    <li>การแจ้งเตือน Push</li>
+                    <li>อินเทอร์เฟสที่เหมาะสำหรับมือถือ</li>
+                    <li>การซิงโครไนซ์แบบคลาวด์</li>
+                    <li>การกระทำอย่างรวดเร็ว</li>
+                </ul>
+            </div>
+
+            <!-- Product 5: Enterprise Suite -->
+            <div class="product-card" id="enterprise">
+                <div class="product-icon">🏢</div>
+                <h3>Enterprise Suite</h3>
+                <p class="description">โซลูชั่นองค์กรที่มีคุณลักษณะเต็มรูปแบบพร้อมความปลอดภัยขั้นสูง</p>
+                <ul class="features-list">
+                    <li>การจัดการผู้ใช้หลายคน</li>
+                    <li>สิทธิ์อนุญาตขั้นสูง</li>
+                    <li>การเข้ารหัสข้อมูล</li>
+                    <li>เครื่องมือการปฏิบัติตามกฎระเบียบ</li>
+                    <li>ฝ่ายสนับสนุนแบบเฉพาะเจาะจง</li>
+                </ul>
+            </div>
+
+            <!-- Product 6: Integration Hub -->
+            <div class="product-card">
+                <div class="product-icon">🔗</div>
+                <h3>ศูนย์การรวมเข้า</h3>
+                <p class="description">เชื่อมต่อกับเครื่องมือทางธุรกิจที่คุณชอบ</p>
+                <ul class="features-list">
+                    <li>การรวมเข้า 100+</li>
+                    <li>สนับสนุน Zapier</li>
+                    <li>Webhook ที่กำหนดเอง</li>
+                    <li>เอกสาร API</li>
+                    <li>ขั้นตอนการทำงานอัตโนมัติ</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section" id="pricing">
+            <h2>💰 แผนการคิดค่า</h2>
+            <div class="pricing-grid">
+                <!-- Starter Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-price">
+                        <span class="currency">฿</span>999
+                        <span class="period">/เดือน</span>
+                    </div>
+                    <p class="plan-description">เหมาะสำหรับทีมเล็กๆ ที่เริ่มต้น</p>
+                    <ul class="plan-features">
+                        <li>สูงสุด 100 รายชื่อติดต่อ</li>
+                        <li>คุณสมบัติ CRM พื้นฐาน</li>
+                        <li>ฝ่ายสนับสนุนทางอีเมล</li>
+                        <li>การเข้าถึงแอป Mobile</li>
+                        <li>บัญชีผู้ใช้ 1 คน</li>
+                    </ul>
+                    <button class="plan-button secondary" onclick="selectPlan('Starter')">เลือกแผน</button>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="pricing-card featured">
+                    <div class="plan-name">Professional</div>
+                    <div class="plan-price">
+                        <span class="currency">฿</span>2,499
+                        <span class="period">/เดือน</span>
+                    </div>
+                    <p class="plan-description">ยอดนิยมสำหรับธุรกิจที่เติบโต</p>
+                    <ul class="plan-features">
+                        <li>สูงสุด 1,000 รายชื่อติดต่อ</li>
+                        <li>คุณสมบัติ CRM ขั้นสูง</li>
+                        <li>รวมผู้ช่วย AI</li>
+                        <li>ฝ่ายสนับสนุนลำดับความสำคัญ</li>
+                        <li>สูงสุด 5 ผู้ใช้</li>
+                        <li>วิเคราะห์ Pro</li>
+                    </ul>
+                    <button class="plan-button primary" onclick="selectPlan('Professional')">เริ่มต้นเลย</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">Enterprise</div>
+                    <div class="plan-price">
+                        <span class="currency">฿</span>9,999
+                        <span class="period">/เดือน</span>
+                    </div>
+                    <p class="plan-description">โซลูชั่นที่สมบูรณ์สำหรับองค์กรขนาดใหญ่</p>
+                    <ul class="plan-features">
+                        <li>รายชื่อติดต่อไม่จำกัด</li>
+                        <li>รวมคุณสมบัติทั้งหมด</li>
+                        <li>ผู้จัดการบัญชีเฉพาะเจาะจง</li>
+                        <li>การรวมเข้าที่กำหนดเอง</li>
+                        <li>ผู้ใช้ไม่จำกัด</li>
+                        <li>ฝ่ายสนับสนุนโทรศัพท์ 24/7</li>
+                    </ul>
+                    <button class="plan-button secondary" onclick="selectPlan('Enterprise')">ติดต่อฝ่ายขาย</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership Signup Section -->
+        <section class="membership-section">
+            <h2>📝 ลงทะเบียนแผน</h2>
+            <form class="membership-form" id="membershipForm">
+                <div class="form-group">
+                    <label for="fullName">ชื่อเต็ม *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="ป้อนชื่อเต็มของคุณ">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">ที่อยู่อีเมล *</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">เบอร์โทรศัพท์</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+66...">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">ชื่อบริษัท</label>
+                    <input type="text" id="company" name="company" placeholder="ชื่อบริษัทของคุณ">
+                </div>
+
+                <div class="form-group">
+                    <label for="plan">เลือกแผน *</label>
+                    <select id="plan" name="plan" required>
+                        <option value="">-- เลือกแผน --</option>
+                        <option value="Starter">Starter - ฿999/เดือน</option>
+                        <option value="Professional">Professional - ฿2,499/เดือน</option>
+                        <option value="Enterprise">Enterprise - ฿9,999/เดือน</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="employees">จำนวนสมาชิกในทีม *</label>
+                    <select id="employees" name="employees" required>
+                        <option value="">-- เลือกขนาดทีม --</option>
+                        <option value="1">1 คน</option>
+                        <option value="2-5">2-5 คน</option>
+                        <option value="6-10">6-10 คน</option>
+                        <option value="11-50">11-50 คน</option>
+                        <option value="50+">50+ คน</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="industry">ประเภทอุตสาหกรรม</label>
+                    <select id="industry" name="industry">
+                        <option value="">-- เลือกประเภท --</option>
+                        <option value="technology">เทคโนโลยี</option>
+                        <option value="retail">ค้าปลีก</option>
+                        <option value="finance">การเงิน</option>
+                        <option value="healthcare">สุขภาพ</option>
+                        <option value="manufacturing">การผลิต</option>
+                        <option value="other">อื่นๆ</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">ข้อความ / หมายเหตุ</label>
+                    <textarea id="message" name="message" placeholder="บอกเราเกี่ยวกับความต้องการของคุณ..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">สมัครสมาชิกจดหมายข่าว</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">ฉันยอมรับเงื่อนไข *</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">ลงทะเบียนตอนนี้</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // Select plan from pricing cards
+        function selectPlan(planName) {
+            const planSelect = document.getElementById('plan');
+            planSelect.value = planName;
+            document.querySelector('.membership-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle form submission
+        document.getElementById('membershipForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                plan: document.getElementById('plan').value,
+                employees: document.getElementById('employees').value,
+                industry: document.getElementById('industry').value,
+                message: document.getElementById('message').value,
+                newsletter: document.getElementById('newsletter').checked,
+            };
+
+            try {
+                // Send to backend API
+                const response = await fetch('http://localhost:8000/register-plan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Show success message
+                    alert(`ขอบคุณ ${formData.fullName}! เราได้รับการลงทะเบียนของคุณสำหรับแผน ${formData.plan} เราจะติดต่อคุณเร็วๆ นี้ที่ ${formData.email}`);
+                    
+                    // Log the registration ID
+                    console.log('Registration ID:', result.registration.id);
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.detail);
+                }
+            } catch (error) {
+                alert('ข้อผิดพลาดในการส่งแบบฟอร์ม: ' + error.message);
+                console.error('Error:', error);
+            }
+        });
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>AI Chatbot Web Agent - CRM Assistant | Built with FastAPI & Modern Web Technologies</p>
+    </footer>
+    </div>
+</body>
+</html>

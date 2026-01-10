@@ -59,6 +59,18 @@ class UpdateCustomerRequest(BaseModel):
     travel: bool = False
 
 
+class PlanRegistrationRequest(BaseModel):
+    fullName: str
+    email: str
+    phone: str = ""
+    company: str = ""
+    plan: str
+    employees: str
+    industry: str = ""
+    message: str = ""
+    newsletter: bool = False
+
+
 class CustomerResponse(BaseModel):
     id: int
     name: str
@@ -198,6 +210,57 @@ async def get_stats():
         }
     except Exception as e:
         logger.error(f"Stats error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/register-plan")
+async def register_plan(request: PlanRegistrationRequest):
+    """Register for a plan"""
+    try:
+        registration = db.create_registration(
+            full_name=request.fullName,
+            email=request.email,
+            phone=request.phone,
+            company=request.company,
+            plan=request.plan,
+            employees=request.employees,
+            industry=request.industry,
+            message=request.message,
+            newsletter=request.newsletter
+        )
+        return {
+            "status": "success",
+            "message": f"Registration received. We'll contact you at {request.email}",
+            "registration": registration
+        }
+    except Exception as e:
+        logger.error(f"Registration error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/registrations")
+async def get_registrations():
+    """Get all plan registrations"""
+    try:
+        registrations = db.get_registrations()
+        return {"registrations": registrations}
+    except Exception as e:
+        logger.error(f"Get registrations error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/registrations/{registration_id}")
+async def get_registration(registration_id: int):
+    """Get a specific registration"""
+    try:
+        registration = db.get_registration(registration_id)
+        if not registration:
+            raise HTTPException(status_code=404, detail="Registration not found")
+        return registration
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Get registration error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
