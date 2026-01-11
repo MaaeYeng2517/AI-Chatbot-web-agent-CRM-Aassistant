@@ -61,6 +61,19 @@
             <div class="content">
                 <div id="site-header"></div>
                 <script src="include-header.js"></script>
+                <section class="card search-card">
+                    <div class="card-header">
+                        <h2>🔎 ค้นหา</h2>
+                    </div>
+                    <form id="searchForm" class="form">
+                        <div class="form-group">
+                            <label for="searchQuery">คำค้น:</label>
+                            <input type="text" id="searchQuery" name="q" placeholder="ค้นหาลูกค้า, อีเมล, บริษัท">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchLimit">จำนวนผลลัพธ์:</label>
+                            <input 
+                                type="number" 
                                 id="searchLimit" 
                                 name="limit"
                                 value="10"
@@ -299,6 +312,15 @@
                     </div>
                     <div class="products-grid">
                         <div class="product-card">
+                            <div class="product-img">🤖</div>
+                            <h3>AI CRM Assistant</h3>
+                            <p>ผู้ช่วยจัดการลูกค้าอัจฉริยะ ตอบคำถาม ดูแลลูกค้า และสร้างงานอัตโนมัติ</p>
+                            <span class="badge">AI</span>
+                            <div style="margin-top:12px">
+                                <a href="agent.html" class="link-button">ลองใช้งาน →</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
                             <div class="product-img">🎯</div>
                             <h3>CRM Suite</h3>
                             <p>Complete customer management solution with AI integration</p>
@@ -306,15 +328,27 @@
                         </div>
                         <div class="product-card">
                             <div class="product-img">⚡</div>
-                            <h3>Fast Deploy</h3>
-                            <p>One-click deployment and instant setup</p>
-                            <span class="badge">Enterprise</span>
+                            <h3>Automation Studio</h3>
+                            <p>Workflow automation, email sequences and task scheduling</p>
+                            <span class="badge">Automation</span>
                         </div>
                         <div class="product-card">
-                            <div class="product-img">🌐</div>
-                            <h3>Cloud Platform</h3>
-                            <p>Secure cloud-based infrastructure</p>
-                            <span class="badge">Cloud</span>
+                            <div class="product-img">🔗</div>
+                            <h3>Integrations</h3>
+                            <p>เชื่อมต่อกับระบบอีเมล, ชำระเงิน, และเครื่องมือการตลาด</p>
+                            <span class="badge">API</span>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">📱</div>
+                            <h3>Mobile & PWA</h3>
+                            <p>รองรับการใช้งานบนมือถือและติดตั้งเป็นแอพ PWA</p>
+                            <span class="badge">Mobile</span>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">🔐</div>
+                            <h3>Security & Compliance</h3>
+                            <p>Enterprise-grade security and data protection</p>
+                            <span class="badge">Secure</span>
                         </div>
                     </div>
                 </section>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Think Everyday For You</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 flex justify-center">
+
+  <!-- App Container -->
+  <div class="w-full max-w-md bg-white min-h-screen">
+
+    <!-- Header -->
+    <header class="p-4 border-b">
+      <h1 class="text-xl font-bold text-center">
+        Tefy: Think Everyday For You
+      </h1>
+      <p class="text-sm text-gray-500 text-center">
+        ความรู้ดี ๆ มีราคา ได้ทุกวัน
+      </p>
+    </header>
+
+    <!-- Home -->
+    <main class="p-4 space-y-4" id="home">
+      <div class="border rounded p-3" onclick="openArticle()">
+        <h2 class="font-semibold">ความรู้รอบตัวที่ควรรู้</h2>
+        <p class="text-sm text-gray-500">
+          อ่านวันละนิด เข้าใจโลกมากขึ้น
+        </p>
+      </div>
+
+      <div class="border rounded p-3" onclick="openArticle()">
+        <h2 class="font-semibold">แนวคิดง่าย ๆ ในชีวิต</h2>
+        <p class="text-sm text-gray-500">
+          ความคิดดี ๆ ที่ใช้ได้ทุกวัน
+        </p>
+      </div>
+    </main>
+
+    <!-- Article Page -->
+    <main class="p-4 hidden" id="article">
+      <button class="text-sm text-blue-500 mb-3" onclick="goHome()">
+        ← กลับหน้าแรก
+      </button>
+
+      <h2 class="text-xl font-bold mb-2">
+        ความรู้รอบตัวที่ควรรู้
+      </h2>
+
+      <p class="text-gray-600 mb-4">
+        โลกของเรามีเรื่องน่าสนใจมากมาย การเรียนรู้วันละนิด
+        จะช่วยให้เราเข้าใจสิ่งรอบตัวได้ดีขึ้น
+      </p>
+
+      <!-- Support -->
+      <div class="border-t pt-4">
+        <p class="mb-2">⭐ ดาวทั้งหมด: <span id="stars">0</span></p>
+
+        <div class="flex gap-2">
+          <button onclick="giveStar(1)"
+            class="bg-yellow-400 px-4 py-2 rounded">
+            +1 ⭐
+          </button>
+          <button onclick="giveStar(5)"
+            class="bg-yellow-500 px-4 py-2 rounded">
+            +5 ⭐
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 border-t text-center text-xs text-gray-500">
+      © Think Everyday For You
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let starCount = 0;
+
+    function openArticle() {
+      document.getElementById("home").classList.add("hidden");
+      document.getElementById("article").classList.remove("hidden");
+    }
+
+    function goHome() {
+      document.getElementById("article").classList.add("hidden");
+      document.getElementById("home").classList.remove("hidden");
+    }
+
+    function giveStar(amount) {
+      starCount += amount;
+      document.getElementById("stars").innerText = starCount;
+      alert("ขอบคุณสำหรับการสนับสนุน ⭐");
+    }
+  </script>
+
+</body>
+</html>

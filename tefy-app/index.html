@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Think Everyday For You</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-gray-100 flex justify-center">
+
+<div class="w-full max-w-md bg-white min-h-screen">
+
+  <header class="p-4 border-b text-center">
+    <h1 class="text-xl font-bold">Think Everyday For You</h1>
+    <p class="text-sm text-gray-500">ความรู้ดี ๆ สำหรับทุกวัน</p>
+  </header>
+
+  <!-- HOME -->
+  <main id="home" class="p-4 space-y-4">
+    <p id="userStatus" class="text-sm text-gray-600"></p>
+
+    <div class="border rounded p-3" onclick="openArticle()">
+      <h2 class="font-semibold">ความรู้รอบตัวที่ควรรู้</h2>
+      <p class="text-sm text-gray-500">เรียนรู้วันละนิด</p>
+    </div>
+
+    <button onclick="openLogin()"
+      class="w-full bg-blue-500 text-white py-2 rounded">
+      Login / สมัครสมาชิก
+    </button>
+  </main>
+
+  <!-- ARTICLE -->
+  <main id="article" class="p-4 hidden">
+    <button onclick="goHome()" class="text-blue-500 text-sm mb-2">
+      ← กลับ
+    </button>
+
+    <h2 class="text-xl font-bold mb-2">ความรู้รอบตัวที่ควรรู้</h2>
+    <p class="text-gray-600 mb-4">
+      การเรียนรู้วันละนิด ทำให้เราเข้าใจโลกมากขึ้น
+    </p>
+
+    <p>⭐ ดาว: <span id="stars">0</span></p>
+
+    <div class="flex gap-2 mt-2">
+      <button onclick="giveStar(1)"
+        class="bg-yellow-400 px-4 py-2 rounded">+1 ⭐</button>
+      <button onclick="giveStar(5)"
+        class="bg-yellow-500 px-4 py-2 rounded">+5 ⭐</button>
+    </div>
+  </main>
+
+  <!-- LOGIN -->
+  <main id="login" class="p-4 hidden">
+    <h2 class="text-xl font-bold mb-4 text-center">Login</h2>
+
+    <input id="email" placeholder="Email"
+      class="w-full border p-2 mb-3 rounded">
+
+    <input id="password" type="password" placeholder="Password"
+      class="w-full border p-2 mb-3 rounded">
+
+    <button onclick="login()"
+      class="w-full bg-blue-500 text-white py-2 rounded">
+      Login
+    </button>
+    <button onclick="openWallet()"
+  class="w-full bg-green-500 text-white py-2 rounded">
+  💰 Wallet / กระเป๋าเหรียญ
+</button>
+  </main>
+
+</div>
+
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/wallet.js"></script>
+
+</body>
+</html>
