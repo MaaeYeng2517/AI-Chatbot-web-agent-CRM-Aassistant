@@ -11,6 +11,10 @@ from loguru import logger
 from config import settings
 from src.agent import CRMAgent
 from src.database import db
+import hashlib
+import os
+import base64
+import secrets
 
 
 # Initialize agent (global)
@@ -69,6 +73,17 @@ class PlanRegistrationRequest(BaseModel):
     industry: str = ""
     message: str = ""
     newsletter: bool = False
+
+
+class SignupRequest(BaseModel):
+    name: str
+    email: str
+    password: str
+
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
 
 
 class CustomerResponse(BaseModel):
@@ -261,6 +276,69 @@ async def get_registration(registration_id: int):
         raise
     except Exception as e:
         logger.error(f"Get registration error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# --- Membership endpoints ---
+def _hash_password(password: str, salt: bytes = None) -> str:
+    if salt is None:
+        salt = os.urandom(16)
+    dk = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100_000)
+    return base64.b64encode(salt + dk).decode('utf-8')
+
+
+def _verify_password(password: str, stored: str) -> bool:
+    try:
+        data = base64.b64decode(stored.encode('utf-8'))
+        salt = data[:16]
+        dk = data[16:]
+        test = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100_000)
+        return secrets.compare_digest(dk, test)
+    except Exception:
+        return False
+
+
+@app.post('/signup')
+async def signup(req: SignupRequest):
+    try:
+        existing = db.get_user_by_email(req.email)
+        if existing:
+            raise HTTPException(status_code=400, detail='Email already registered')
+        pwd_hash = _hash_password(req.password)
+        user = db.create_user(name=req.name, email=req.email, password_hash=pwd_hash)
+        return {'status': 'success', 'user': user}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Signup error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post('/login')
+async def login(req: LoginRequest):
+    try:
+        user = db.get_user_by_email(req.email)
+        if not user:
+            raise HTTPException(status_code=400, detail='Invalid credentials')
+        if not _verify_password(req.password, user['password_hash']):
+            raise HTTPException(status_code=400, detail='Invalid credentials')
+        # create simple token and store
+        token = secrets.token_hex(24)
+        db.store_token(token, user['id'])
+        return {'status': 'success', 'token': token, 'user': {k: v for k, v in user.items() if k != 'password_hash'}}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Login error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get('/members')
+async def members():
+    try:
+        return {'users': db.list_users()}
+    except Exception as e:
+        logger.error(f"Members error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

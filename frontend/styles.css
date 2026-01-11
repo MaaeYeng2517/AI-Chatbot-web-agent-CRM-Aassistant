@@ -400,6 +400,18 @@ body {
     background: var(--danger-color);
 }
 
+/* Mobile & PWA tweaks */
+button, .btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@media (max-width: 600px) {
+    .container { padding: 0 1rem; }
+    .nav-link { font-size: 0.9rem; }
+}
+
+
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }

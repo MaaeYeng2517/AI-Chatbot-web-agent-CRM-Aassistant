@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ผู้ช่วยจัดการลูกค้า AI CRM</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="AI CRM Assistant">
+    <link rel="apple-touch-icon" href="/manifest.json">
 </head>
 <body>
     <div class="container">
@@ -24,11 +29,12 @@
         <nav class="navbar bg-warning">
             <div class="nav-wrapper">
                 <a href="" class="nav-link active" data-tab="home">🏠 หน้าแรก</a>
-                <a href="/solution.html" class="nav-link" data-tab="solution">💡 โซลูชั่น</a>
-                <a href="/product.html" class="nav-link" data-tab="product">📦 สินค้า</a>
-                <a href="/price.html" class="nav-link" data-tab="learn">📚 ราคา</a>
-                <a href="/learning.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
-                <a href="/contact.html" class="nav-link" data-tab="contact">📞 ติดต่อ</a>
+                <a href="solution.html" class="nav-link" data-tab="solution">💡 โซลูชั่น</a>
+                <a href="product.html" class="nav-link" data-tab="product">📦 สินค้า</a>
+                <a href="membership.html" class="nav-link" data-tab="membership">🔐 สมัครสมาชิก</a>
+                <a href="price.html" class="nav-link" data-tab="learn">📚 ราคา</a>
+                <a href="learning.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
+                <a href="contact.html" class="nav-link" data-tab="contact">📞 ติดต่อ</a>
             </div>
         </nav>
 
@@ -53,29 +59,8 @@
 
             <!-- Main Content -->
             <div class="content">
-                <!-- HOME TAB -->
-                <div id="home" class="tab-panel active">
-                    <!-- Search Customers Section -->
-                    <section class="card search-card">
-                        <div class="card-header">
-                            <h2>🔍 ค้นหาลูกค้า</h2>
-                            <span class="tool-badge">search_customers</span>
-                        </div>
-                        <form id="searchForm" class="form">
-                            <div class="form-group">
-                                <label for="searchQuery">ค้นหา:</label>
-                            <input 
-                                type="text" 
-                                id="searchQuery" 
-                                name="query"
-                                placeholder="ป้อนชื่อ อีเมล หรือบริษัท"
-                                required
-                            >
-                        </div>
-                        <div class="form-group">
-                            <label for="searchLimit">ขีด จำกัด ผลลัพธ์:</label>
-                            <input 
-                                type="number" 
+                <div id="site-header"></div>
+                <script src="include-header.js"></script>
                                 id="searchLimit" 
                                 name="limit"
                                 value="10"
@@ -435,5 +420,12 @@
 
     <script src="api.js"></script>
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.warn('SW registration failed', err));
+        }
+    </script>
 </body>
 </html>

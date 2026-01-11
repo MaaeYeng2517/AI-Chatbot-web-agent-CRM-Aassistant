@@ -5,31 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>โซลูชั่น - ผู้ช่วยจัดการลูกค้า AI CRM</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="AI CRM Assistant">
+    <link rel="apple-touch-icon" href="/manifest.json">
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <h1>🤖 ผู้ช่วยจัดการลูกค้า AI CRM</h1>
-                <p>ระบบจัดการสัมพันธ์ลูกค้าที่ใช้ปัญญาประดิษฐ์</p>
-            </div>
-            <div class="status" id="status">
-                <span class="status-dot" id="statusDot"></span>
-                <span id="statusText">กำลังตรวจสอบ...</span>
-            </div>
-        </header>
-
-        <!-- Navigation Bar -->
-        <nav class="navbar">
-            <div class="nav-wrapper">
-                <a href="index.html" class="nav-link" data-tab="home">🏠 หน้าแรก</a>
-                <a href="solution.html" class="nav-link active" data-tab="solution">💡 โซลูชั่น</a>
-                <a href="product.html" class="nav-link" data-tab="product">📦 สินค้า</a>
-                <a href="learn.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
-                <a href="contact.html" class="nav-link" data-tab="contact">📞 ติดต่อ</a>
-            </div>
-        </nav>
+        <div id="site-header"></div>
+        <script src="include-header.js"></script>
 
         <main class="main-content">
             <!-- Sidebar -->
@@ -325,5 +310,12 @@
         // Check every 30 seconds
         setInterval(checkStatus, 30000);
     </script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => console.log('Service Worker registered'))
+                    .catch(err => console.warn('SW registration failed', err));
+            }
+        </script>
 </body>
 </html>

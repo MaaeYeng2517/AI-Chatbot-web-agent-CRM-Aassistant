@@ -10,7 +10,7 @@ COPY . .
 CMD ["python", "mcp_server.py"]
 
 Create requirements.txt:
-fastapi==0.104.1
-uvicorn==0.24.0
-pydantic==2.5.0
-mcp==0.9.0
+    fastapi==0.104.1
+    uvicorn==0.24.0
+    pydantic==2.5.0
+    mcp==0.9.0

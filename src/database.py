@@ -120,6 +120,70 @@ class CustomerDatabase:
         """Get a specific registration"""
         return self.registrations.get(registration_id)
 
+    # --- Simple membership (in-memory) ---
+    def __init_membership(self):
+        # called from __init__ after primary structures initialized
+        self.users: Dict[int, Dict] = {}
+        self.next_user_id = 1
+        self.tokens: Dict[str, int] = {}
+
+    def create_user(self, name: str, email: str, password_hash: str) -> Dict:
+        """Create a new user (password_hash should be salted/hash already)"""
+        # ensure membership structures exist
+        if not hasattr(self, 'users'):
+            self.__init_membership()
+
+        # simple uniqueness check
+        for u in self.users.values():
+            if u.get('email') == email:
+                raise ValueError('Email already exists')
+
+        user_id = self.next_user_id
+        self.next_user_id += 1
+
+        user = {
+            'id': user_id,
+            'name': name,
+            'email': email,
+            'password_hash': password_hash,
+            'created_at': datetime.now().isoformat()
+        }
+        self.users[user_id] = user
+        logger.info(f"Created user {email} (ID: {user_id})")
+        return {k: v for k, v in user.items() if k != 'password_hash'}
+
+    def get_user_by_email(self, email: str) -> Optional[Dict]:
+        if not hasattr(self, 'users'):
+            return None
+        for u in self.users.values():
+            if u.get('email') == email:
+                return u
+        return None
+
+    def get_user(self, user_id: int) -> Optional[Dict]:
+        if not hasattr(self, 'users'):
+            return None
+        return self.users.get(user_id)
+
+    def store_token(self, token: str, user_id: int):
+        if not hasattr(self, 'tokens'):
+            self.__init_membership()
+        self.tokens[token] = user_id
+
+    def get_user_by_token(self, token: str) -> Optional[Dict]:
+        if not hasattr(self, 'tokens'):
+            return None
+        uid = self.tokens.get(token)
+        if not uid:
+            return None
+        return self.get_user(uid)
+
+    def list_users(self) -> List[Dict]:
+        if not hasattr(self, 'users'):
+            return []
+        # return users without password hash
+        return [{k: v for k, v in u.items() if k != 'password_hash'} for u in self.users.values()]
+
 
 # Global database instance
 db = CustomerDatabase()
