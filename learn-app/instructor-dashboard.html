@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instructor Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div>OnlineCourse</div>
+    <div>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='notifications.html'">Notifications</button>
+    </div>
+  </div>
+</nav>
+
+<section class="container" style="margin-top:60px;">
+  <h2>Instructor Dashboard</h2>
+
+  <h3>Your Courses</h3>
+  <ul id="instructor-courses"></ul>
+
+  <h3 style="margin-top:2rem;">Earnings</h3>
+  <p id="instructor-earnings">$0</p>
+
+  <h3 style="margin-top:2rem;">Notifications</h3>
+  <ul id="notification-list"></ul>
+</section>
+
+<script src="assets/js/main.js"></script>
+<script>
+let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+const courses = JSON.parse(localStorage.getItem('courses')||'[]');
+const users = JSON.parse(localStorage.getItem('users')||'[]');
+
+// Render Courses
+const instructorCourses = courses.filter(c => currentUser.coursesTaught?.includes(c.id));
+const ul = document.getElementById('instructor-courses');
+instructorCourses.forEach(c=>{
+  const li = document.createElement('li');
+  const students = users.filter(u=>u.enrolledCourses?.includes(c.id));
+  const assignmentsPending = students.reduce((a,s)=>{
+    return a + c.lessons.reduce((aa,l,i)=> aa + (s.progress?.[c.id+'_assignment_'+i]!=='submitted'?1:0), 0)
+  },0);
+  li.textContent = `${c.title} - Students: ${students.length} - Assignments Pending: ${assignmentsPending}`;
+  ul.appendChild(li);
+});
+
+// Render Earnings
+let earnings = instructorCourses.reduce((sum,c)=>{
+  const students = users.filter(u=>u.enrolledCourses?.includes(c.id));
+  return sum + students.length*c.price;
+},0);
+document.getElementById('instructor-earnings').textContent = '$'+earnings;
+
+// Render Notifications
+const notifUl = document.getElementById('notification-list');
+if(currentUser.notifications){
+  currentUser.notifications.forEach(n=>{
+    const li = document.createElement('li');
+    li.textContent = n;
+    notifUl.appendChild(li);
+  });
+}
+</script>
+</body>
+</html>
