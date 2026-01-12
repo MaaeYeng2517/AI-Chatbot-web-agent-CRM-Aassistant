@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard - LMS</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div>OnlineCourse</div>
+    <div>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='course.html'">Course</button>
+      <button onclick="window.location.href='notifications.html'">Notifications</button>
+    </div>
+  </div>
+</nav>
+
+<section id="student-dashboard" class="active" style="margin-top:60px;">
+  <div class="container">
+    <h2>Student Dashboard</h2>
+
+    <!-- Tabs -->
+    <div style="display:flex; border-bottom:2px solid #2563eb; margin-bottom:1rem;">
+      <button class="tab-btn text-blue-600 border-b-2 border-blue-600" data-tab="courses">My Courses</button>
+      <button class="tab-btn text-gray-600" data-tab="progress">Progress</button>
+      <button class="tab-btn text-gray-600" data-tab="assignments">Assignments</button>
+    </div>
+
+    <div id="tab-content">
+      <!-- Courses Tab -->
+      <div class="tab active-tab">
+        <ul id="student-courses">
+          <li>React for Beginners</li>
+          <li>Advanced Python</li>
+        </ul>
+      </div>
+
+      <!-- Progress Tab -->
+      <div class="tab hidden">
+        <h3>Course Progress</h3>
+        <div id="student-progress"></div>
+      </div>
+
+      <!-- Assignments Tab -->
+      <div class="tab hidden">
+        <h3>Assignments Status</h3>
+        <div id="student-assignments"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/js/main.js"></script>
+<script>
+// Sample Data
+const studentCourses = [
+  {title:'React for Beginners', progress:80, quizScore:3, totalQuiz:4, assignmentSubmitted:true},
+  {title:'Advanced Python', progress:50, quizScore:2, totalQuiz:3, assignmentSubmitted:false}
+];
+
+// Render Progress
+const progressDiv = document.getElementById('student-progress');
+studentCourses.forEach(c=>{
+  const div = document.createElement('div');
+  div.style.marginBottom='1rem';
+  div.innerHTML = `<strong>${c.title}</strong>
+    <div style="width:100%; background:#e5e7eb; height:12px; border-radius:6px;">
+      <div style="width:${c.progress}%; background:#2563eb; height:100%; border-radius:6px;"></div>
+    </div>
+    Quiz: ${c.quizScore}/${c.totalQuiz}`;
+  progressDiv.appendChild(div);
+});
+
+// Render Assignment Status
+const assignmentDiv = document.getElementById('student-assignments');
+studentCourses.forEach(c=>{
+  const div = document.createElement('div');
+  div.innerHTML = `<strong>${c.title}</strong> - Assignment: ${c.assignmentSubmitted?'Submitted ✅':'Pending ❌'}`;
+  assignmentDiv.appendChild(div);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เรียนรู้ - ผู้ช่วยจัดการลูกค้า AI CRM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="AI CRM Assistant">
+    <link rel="apple-touch-icon" href="/manifest.json">
+</head>
+<body>
+    <div class="container">
+        <div id="site-header"></div>
+        <script src="include-header.js"></script>
+
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <section class="tools-panel">
+                    <h2>📚 หมวดหมู่เรียนรู้</h2>
+                    <div id="learningMenu" class="tools-list">
+                        <a href="#getting-started" class="tool-item" onclick="scrollToSection('getting-started')">🚀 เริ่มต้นใช้งาน</a>
+                        <a href="#api-reference" class="tool-item" onclick="scrollToSection('api-reference')">📖 ข้อมูลอ้างอิง API</a>
+                        <a href="#tutorials" class="tool-item" onclick="scrollToSection('tutorials')">🎓 บทช่วยสอน</a>
+                        <a href="#best-practices" class="tool-item" onclick="scrollToSection('best-practices')">⭐ เทคนิคที่ดีที่สุด</a>
+                        <a href="#faq" class="tool-item" onclick="scrollToSection('faq')">❓ คำถามที่พบบ่อย</a>
+                    </div>
+                </section>
+
+                <section class="memory-panel">
+                    <h2>💡 เคล็ดลับการเรียนรู้</h2>
+                    <div style="padding: 1rem;">
+                        <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(99, 102, 241, 0.1); border-radius: 0.5rem;">
+                            <strong>📝 ก่อนอื่น</strong><br>
+                            <small>อ่านเอกสารเบื้องต้น</small>
+                        </div>
+                        <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem;">
+                            <strong>💻 ประสบการณ์</strong><br>
+                            <small>ทดลองใช้ API ด้วยตัวคุณเอง</small>
+                        </div>
+                        <div style="padding: 0.75rem; background: rgba(139, 92, 246, 0.1); border-radius: 0.5rem;">
+                            <strong>🤝 ชุมชน</strong><br>
+                            <small>เชื่อมต่อกับผู้ใช้อื่น ๆ</small>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="content">
+                <!-- Hero Section -->
+                <section class="card hero-section">
+                    <div style="text-align: center; padding: 2rem;">
+                        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">📚 ศูนย์การเรียนรู้</h1>
+                        <p style="font-size: 1.1rem; color: #cbd5e1; max-width: 600px; margin: 0 auto;">
+                            คู่มือที่ครอบคลุมเพื่อช่วยให้คุณเรียนรู้และเชี่ยวชาญระบบ AI CRM Assistant ของเรา
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Getting Started Section -->
+                <section class="card solution-card" id="getting-started">
+                    <div class="card-header">
+                        <h2>🚀 เริ่มต้นใช้งาน</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                            <div>
+                                <h3 style="margin-bottom: 1rem;">ขั้นตอนการติดตั้ง</h3>
+                                <ol style="padding-left: 1.5rem;">
+                                    <li style="margin-bottom: 0.75rem;"><strong>โคลนที่เก็บ</strong> - คัดลอกโครงการจาก GitHub</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong>ติดตั้งการพึ่งพา</strong> - รัน <code style="background: #1e293b; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">pip install -r requirements.txt</code></li>
+                                    <li style="margin-bottom: 0.75rem;"><strong>เริ่มเซิร์ฟเวอร์</strong> - รัน <code style="background: #1e293b; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python main.py</code></li>
+                                    <li style="margin-bottom: 0.75rem;"><strong>เปิดเบราว์เซอร์</strong> - ไปที่ <code style="background: #1e293b; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">http://localhost:3000</code></li>
+                                    <li><strong>เริ่มสร้าง</strong> - สร้างลูกค้าแรกของคุณ</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 1rem;">โครงสร้างโครงการ</h3>
+                                <div style="background: rgba(30, 41, 59, 0.5); padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.85rem;">
+                                    <div>project/</div>
+                                    <div style="padding-left: 1rem;">├── src/</div>
+                                    <div style="padding-left: 2rem;">│   ├── main.py</div>
+                                    <div style="padding-left: 2rem;">│   ├── api.py</div>
+                                    <div style="padding-left: 2rem;">│   ├── database.py</div>
+                                    <div style="padding-left: 2rem;">│   └── agent.py</div>
+                                    <div style="padding-left: 1rem;">├── frontend/</div>
+                                    <div style="padding-left: 2rem;">│   ├── index.html</div>
+                                    <div style="padding-left: 2rem;">│   ├── styles.css</div>
+                                    <div style="padding-left: 2rem;">│   └── app.js</div>
+                                    <div style="padding-left: 1rem;">└── requirements.txt</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- API Reference Section -->
+                <section class="card solution-card" id="api-reference">
+                    <div class="card-header">
+                        <h2>📖 ข้อมูลอ้างอิง API</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">จุดสิ้นสุด API หลัก</h3>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                                <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                                    <div style="font-family: monospace; margin-bottom: 0.5rem;"><strong>GET</strong> /customers</div>
+                                    <p style="margin: 0; font-size: 0.9rem;">ดึงรายการลูกค้าทั้งหมด</p>
+                                </div>
+                                <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
+                                    <div style="font-family: monospace; margin-bottom: 0.5rem;"><strong>POST</strong> /customers</div>
+                                    <p style="margin: 0; font-size: 0.9rem;">สร้างลูกค้าใหม่</p>
+                                </div>
+                                <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+                                    <div style="font-family: monospace; margin-bottom: 0.5rem;"><strong>GET</strong> /customers/{id}</div>
+                                    <p style="margin: 0; font-size: 0.9rem;">ดึงข้อมูลลูกค้าตามรหัส</p>
+                                </div>
+                                <div style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #8b5cf6;">
+                                    <div style="font-family: monospace; margin-bottom: 0.5rem;"><strong>PUT</strong> /customers/{id}</div>
+                                    <p style="margin: 0; font-size: 0.9rem;">อัปเดตข้อมูลลูกค้า</p>
+                                </div>
+                                <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444;">
+                                    <div style="font-family: monospace; margin-bottom: 0.5rem;"><strong>DELETE</strong> /customers/{id}</div>
+                                    <p style="margin: 0; font-size: 0.9rem;">ลบลูกค้า</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">รูปแบบคำขอตัวอย่าง</h3>
+                            <div style="background: #1e293b; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+                                <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem;"><code>{
+  "name": "สมชาย ใจดี",
+  "email": "somchai@example.com",
+  "company": "บริษัท ABC",
+  "working": true,
+  "travel": false
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tutorials Section -->
+                <section class="card solution-card" id="tutorials">
+                    <div class="card-header">
+                        <h2>🎓 บทช่วยสอน</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🔧 บทช่วยสอนที่ 1: การตั้งค่าเบื้องต้น</h4>
+                                <p style="margin-bottom: 1rem;">เรียนรู้วิธีการติดตั้งและเปิดใช้งาน AI CRM Assistant เป็นครั้งแรก</p>
+                                <ol style="padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>ดาวน์โหลดและติดตั้ง Python 3.11+</li>
+                                    <li>โคลนที่เก็บโครงการ</li>
+                                    <li>ติดตั้งการพึ่งพาที่จำเป็น</li>
+                                    <li>เริ่มเซิร์ฟเวอร์ FastAPI</li>
+                                    <li>ตรวจสอบว่าหน้าแรกทำงาน</li>
+                                </ol>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">👥 บทช่วยสอน 2: การจัดการลูกค้า</h4>
+                                <p style="margin-bottom: 1rem;">สร้าง อัปเดต และจัดการข้อมูลลูกค้าของคุณ</p>
+                                <ol style="padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>สร้างลูกค้าใหม่ด้วยข้อมูลพื้นฐาน</li>
+                                    <li>ค้นหาลูกค้าโดยใช้เกณฑ์ต่างๆ</li>
+                                    <li>อัปเดตข้อมูลลูกค้าที่มีอยู่</li>
+                                    <li>ลบลูกค้าที่ไม่ต้องการ</li>
+                                    <li>ใช้ API เพื่อการบ่วงดำเนินการหลาย ๆ</li>
+                                </ol>
+                            </div>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🔗 บทช่วยสอน 3: การใช้ API</h4>
+                                <p style="margin-bottom: 1rem;">ประสบการณ์ในการเรียก API จาก JavaScript</p>
+                                <ol style="padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>ทำความเข้าใจ REST API</li>
+                                    <li>ใช้ Fetch API สำหรับการโทร</li>
+                                    <li>จัดการ JSON และข้อมูลการตอบกลับ</li>
+                                    <li>การจัดการข้อผิดพลาดและการยืนยัน</li>
+                                    <li>การทดสอบ API ด้วย cURL หรือ Postman</li>
+                                </ol>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 1rem;">🤖 บทช่วยสอน 4: การใช้คุณสมบัติ AI</h4>
+                                <p style="margin-bottom: 1rem;">ใช้ประโยชน์จากการวิเคราะห์และการทำนายที่ขับเคลื่อนด้วย AI</p>
+                                <ol style="padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>ทำความเข้าใจ AI Agent Framework</li>
+                                    <li>ดำเนินการวิเคราะห์ลูกค้า</li>
+                                    <li>ใช้เครื่องมือการค้นหาโดยอัตโนมัติ</li>
+                                    <li>รวมเข้าระบบ CRM ของคุณ</li>
+                                    <li>อัตโนมัติของวิธีการทำงาน</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Best Practices Section -->
+                <section class="card solution-card" id="best-practices">
+                    <div class="card-header">
+                        <h2>⭐ เทคนิคที่ดีที่สุด</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
+                                <h4 style="margin-bottom: 0.5rem;">🔒 ความปลอดภัย</h4>
+                                <ul style="list-style-position: inside; padding-left: 0; margin: 0;">
+                                    <li>ตรวจสอบอินพุตทั้งหมดก่อนส่งไปยังเซิร์ฟเวอร์</li>
+                                    <li>ใช้ HTTPS เสมอในการผลิต</li>
+                                    <li>บันทึกสิ่งอื่น ๆ ทั้งหมด และตรวจสอบกิจกรรม</li>
+                                    <li>จำกัดสิทธิ์การเข้าถึง API</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                                <h4 style="margin-bottom: 0.5rem;">⚡ ประสิทธิภาพ</h4>
+                                <ul style="list-style-position: inside; padding-left: 0; margin: 0;">
+                                    <li>ใช้การแพตช์และการโหลดหลายเหตุการณ์เพื่อความมีประสิทธิภาพ</li>
+                                    <li>แคช ข้อมูลเมื่อเป็นไปได้</li>
+                                    <li>ตรวจสอบคำขอ API ด้วยหมายเลข</li>
+                                    <li>ใช้ดัชนีฐานข้อมูลสำหรับการค้นหา</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(168, 85, 247, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+                                <h4 style="margin-bottom: 0.5rem;">🔧 การบำรุงรักษา</h4>
+                                <ul style="list-style-position: inside; padding-left: 0; margin: 0;">
+                                    <li>ใช้ Git สำหรับการควบคุมเวอร์ชัน</li>
+                                    <li>เขียนการทดสอบหน่วยสำหรับโค้ด</li>
+                                    <li>ทำเอกสารขอบเขต API และการใช้งาน</li>
+                                    <li>ตรวจสอบและชอบให้คนอื่นทำการตรวจสอบ</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(236, 72, 153, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ec4899;">
+                                <h4 style="margin-bottom: 0.5rem;">📊 การตรวจสอบ</h4>
+                                <ul style="list-style-position: inside; padding-left: 0; margin: 0;">
+                                    <li>บันทึกข้อมูลประเภทและปริมาณเพียงพอ</li>
+                                    <li>ตรวจสอบเมตริก API (เวลา การตอบสนอง ข้อผิดพลาด)</li>
+                                    <li>ตั้งค่าการแจ้งเตือนสำหรับข้อมูลอัตราการผิดพลาด</li>
+                                    <li>ทำการวิเคราะห์เป็นระยะเวลา</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section class="card solution-card" id="faq">
+                    <div class="card-header">
+                        <h2>❓ คำถามที่พบบ่อย</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem; color: #60a5fa;">ฉันจะเริ่มต้นกับ AI CRM Assistant ได้อย่างไร?</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">ทำตามส่วน "เริ่มต้นใช้งาน" ข้างต้น บทช่วยสอนตามขั้นตอนแสดงวิธีการติดตั้งและเพื่อเรียกใช้หลักการแรก</p>
+                            </div>
+                            <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem; color: #60a5fa;">API ข้อมูลจำเป็นสำหรับการสร้างลูกค้าคืออะไร?</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">คุณต้องการ: ชื่อ อีเมล บริษัท การทำงาน (บูลีน) และการเดินทาง (บูลีน) โปรดดูส่วน "ข้อมูลอ้างอิง API" สำหรับตัวอย่างมากขึ้น</p>
+                            </div>
+                            <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem; color: #60a5fa;">ฉันสามารถใช้ AI CRM Assistant กับฐานข้อมูลอื่นได้หรือไม่?</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">ใช่ คุณสามารถรวมฐานข้อมูล PostgreSQL, MySQL หรือ SQLite ได้ แก้ไขไฟล์ database.py เพื่อเปลี่ยนการเชื่อมต่อ</p>
+                            </div>
+                            <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem; color: #60a5fa;">ฉันจะขึ้นเซิร์ฟเวอร์เพื่อใช้งานจริงได้อย่างไร?</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">สามารถขึ้น Docker บน AWS, Azure หรือ Heroku เราแนะนำให้ใช้ HTTPS เปิดใช้งาน CORS อย่างถูกต้อง และบันทึกทั้งหมดเพื่อการติดตามบ้าน</p>
+                            </div>
+                            <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem; color: #60a5fa;">ฉันจะเพิ่มคุณสมบัติใหม่ได้อย่างไร?</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">เพิ่ม API endpoints ใหม่ใน api.py และติดตั้งวิธีฐานข้อมูลใน database.py จากนั้นเพิ่มฟอร์มฟ้อนท์เอนด์ใน HTML และดึง JavaScript</p>
+                            </div>
+                            <div style="background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem; color: #60a5fa;">ฉันจะได้รับการสนับสนุนหรือความช่วยเหลือได้อย่างไร?</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">ติดต่อทีมการสนับสนุน ตรวจสอบเอกสารประกอบอย่างละเอียด เรียกดูปัญหา GitHub หรือเข้าร่วมชุมชนจำนวนมากของเรา</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Resources Section -->
+                <section class="card solution-card">
+                    <div class="card-header">
+                        <h2>🔗 ทรัพยากรเพิ่มเติม</h2>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem;">📖 เอกสารประกอบ</h4>
+                                <p style="margin-bottom: 1rem; font-size: 0.9rem;">เอกสารประกอบ API ที่สมบูรณ์พร้อมตัวอย่าง</p>
+                                <a href="#" style="color: #60a5fa; text-decoration: none; font-weight: 500;">อ่านเอกสาร →</a>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem;">💻 ตัวอย่างโค้ด</h4>
+                                <p style="margin-bottom: 1rem; font-size: 0.9rem;">ตัวอย่างและเทมเพลตที่พร้อมใช้งาน</p>
+                                <a href="#" style="color: #10b981; text-decoration: none; font-weight: 500;">ดูตัวอย่าง →</a>
+                            </div>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem;">🐛 ระบบการแจ้งบัญชี</h4>
+                                <p style="margin-bottom: 1rem; font-size: 0.9rem;">รายงานบัญชีและข้อเสนอคุณสมบัติ</p>
+                                <a href="#" style="color: #8b5cf6; text-decoration: none; font-weight: 500;">ไปที่ GitHub →</a>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.5rem;">💬 ชุมชน</h4>
+                                <p style="margin-bottom: 1rem; font-size: 0.9rem;">เชื่อมต่อกับผู้ใช้และผู้พัฒนาอื่น ๆ</p>
+                                <a href="#" style="color: #f59e0b; text-decoration: none; font-weight: 500;">เข้าร่วมชุมชน →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="card" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); text-align: center; padding: 3rem;">
+                    <h2 style="color: white; margin-bottom: 1rem;">พร้อมเริ่มต้นเรียนรู้แล้วหรือ?</h2>
+                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        ติดตามบทช่วยสอนของเราทีละขั้นตอนและกลายเป็นผู้เชี่ยวชาญ AI CRM Assistant
+                    </p>
+                    <button onclick="scrollToSection('getting-started')" style="background: white; color: #6366f1; border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: bold; cursor: pointer; font-size: 1rem;">
+                        เริ่มเรียนรู้ตอนนี้
+                    </button>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>ผู้ช่วยจัดการ AI Chatbot Web Agent - CRM | สร้างด้วย FastAPI และเทคโนโลยี Web สมัยใหม่</p>
+        </footer>
+    </div>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Status check
+        async function checkStatus() {
+            try {
+                const response = await fetch('http://localhost:8000');
+                const data = await response.json();
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                statusDot.classList.add('online');
+                statusDot.classList.remove('offline');
+                statusText.textContent = 'ออนไลน์';
+            } catch (error) {
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                statusDot.classList.add('offline');
+                statusDot.classList.remove('online');
+                statusText.textContent = 'ออฟไลน์';
+            }
+        }
+
+        // Check status on load
+        checkStatus();
+        // Check every 30 seconds
+        setInterval(checkStatus, 30000);
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(() => console.log('Service Worker registered'))
+                .catch(err => console.warn('SW registration failed', err));
+        }
+    </script>
+</body>
+</html>

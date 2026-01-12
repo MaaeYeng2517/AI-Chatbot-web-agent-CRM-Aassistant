@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผู้ช่วยจัดการลูกค้า AI CRM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="AI CRM Assistant">
+    <link rel="apple-touch-icon" href="/manifest.json">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 ผู้ช่วยจัดการลูกค้า AI CRM</h1>
+                <p>ระบบจัดการสัมพันธ์ลูกค้าที่ใช้ปัญญาประดิษฐ์</p>
+            </div>
+            <div class="status" id="status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">กำลังตรวจสอบ...</span>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar bg-warning">
+            <div class="nav-wrapper">
+                <a href="" class="nav-link active" data-tab="home">🏠 หน้าแรก</a>
+                <a href="solution.html" class="nav-link" data-tab="solution">💡 โซลูชั่น</a>
+                <a href="product.html" class="nav-link" data-tab="product">📦 สินค้า</a>
+                <a href="membership.html" class="nav-link" data-tab="membership">🔐 สมัครสมาชิก</a>
+                <a href="price.html" class="nav-link" data-tab="learn">📚 ราคา</a>
+                <a href="learning.html" class="nav-link" data-tab="learn">📚 เรียนรู้</a>
+                <a href="contact.html" class="nav-link" data-tab="contact">📞 ติดต่อ</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Sidebar - Tools -->
+            <aside class="sidebar">
+                <section class="tools-panel">
+                    <h2>📋 เครื่องมือที่มีอยู่</h2>
+                    <div id="toolsList" class="tools-list">
+                        <div class="loading">กำลังโหลดเครื่องมือ...</div>
+                    </div>
+                </section>
+
+                <section class="memory-panel">
+                    <h2>💭 กิจกรรมล่าสุด</h2>
+                    <div id="memoryList" class="memory-list">
+                        <div class="empty-state">ไม่มีกิจกรรมเลย</div>
+                    </div>
+                    <button class="btn-clear" id="clearMemory">ล้างหน่วยความจำ</button>
+                </section>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="content">
+                <div id="site-header"></div>
+                <script src="include-header.js"></script>
+                <section class="card search-card">
+                    <div class="card-header">
+                        <h2>🔎 ค้นหา</h2>
+                    </div>
+                    <form id="searchForm" class="form">
+                        <div class="form-group">
+                            <label for="searchQuery">คำค้น:</label>
+                            <input type="text" id="searchQuery" name="q" placeholder="ค้นหาลูกค้า, อีเมล, บริษัท">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchLimit">จำนวนผลลัพธ์:</label>
+                            <input 
+                                type="number" 
+                                id="searchLimit" 
+                                name="limit"
+                                value="10"
+                                min="1"
+                                max="100"
+                            >
+                        </div>
+                        <button type="submit" class="btn btn-primary">ค้นหา</button>
+                    </form>
+                    <div id="searchResults" class="results hidden">
+                        <h3>ผลลัพธ์การค้นหา</h3>
+                        <div id="searchResultsList"></div>
+                    </div>
+                </section>
+
+                <!-- Create Customer Section -->
+                <section class="card create-card">
+                    <div class="card-header">
+                        <h2>➕ สร้างลูกค้า</h2>
+                        <span class="tool-badge">create_customer</span>
+                    </div>
+                    <form id="createForm" class="form">
+                        <div class="form-group">
+                            <label for="customerName">Name:</label>
+                            <input 
+                                type="text" 
+                                id="customerName" 
+                                name="name"
+                                placeholder="Full Name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email:</label>
+                            <input 
+                                type="email" 
+                                id="customerEmail" 
+                                name="email"
+                                placeholder="customer@example.com"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="customerCompany">Company:</label>
+                            <input 
+                                type="text" 
+                                id="customerCompany" 
+                                name="company"
+                                placeholder="Company Name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    id="customerWorking" 
+                                    name="working"
+                                    checked
+                                >
+                                Currently Working
+                            </label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    id="customerTravel" 
+                                    name="travel"
+                                >
+                                Travels Frequently
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Create Customer</button>
+                    </form>
+                    <div id="createResult" class="result hidden">
+                        <div id="createResultContent"></div>
+                    </div>
+                </section>
+
+                <!-- Update Customer Section -->
+                <section class="card update-card">
+                    <div class="card-header">
+                        <h2>✏️ Update Customer</h2>
+                        <span class="tool-badge">update_customer</span>
+                    </div>
+                    <form id="updateForm" class="form">
+                        <div class="form-group">
+                            <label for="updateCustomerId">Customer ID:</label>
+                            <input 
+                                type="number" 
+                                id="updateCustomerId" 
+                                name="id"
+                                placeholder="Enter customer ID"
+                                min="1"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="updateCustomerName">Name:</label>
+                            <input 
+                                type="text" 
+                                id="updateCustomerName" 
+                                name="name"
+                                placeholder="Full Name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="updateCustomerEmail">Email:</label>
+                            <input 
+                                type="email" 
+                                id="updateCustomerEmail" 
+                                name="email"
+                                placeholder="email@example.com"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="updateCustomerCompany">Company:</label>
+                            <input 
+                                type="text" 
+                                id="updateCustomerCompany" 
+                                name="company"
+                                placeholder="Company Name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    id="updateCustomerWorking" 
+                                    name="working"
+                                    checked
+                                >
+                                Currently Working
+                            </label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    id="updateCustomerTravel" 
+                                    name="travel"
+                                >
+                                Travels Frequently
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Customer</button>
+                    </form>
+                </section>
+
+                <!-- Delete Customer Section -->
+                <section class="card delete-card">
+                    <div class="card-header">
+                        <h2>🗑️ Delete Customer</h2>
+                        <span class="tool-badge">delete_customer</span>
+                    </div>
+                    <form id="deleteForm" class="form">
+                        <div class="form-group">
+                            <label for="deleteCustomerId">Customer ID:</label>
+                            <input 
+                                type="number" 
+                                id="deleteCustomerId" 
+                                name="id"
+                                placeholder="Enter customer ID to delete"
+                                min="1"
+                                required
+                            >
+                        </div>
+                        <div class="form-group info-box">
+                            <p>⚠️ This action is permanent and cannot be undone.</p>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Delete Customer</button>
+                    </form>
+                </section>
+
+                <!-- Stats Section -->
+                <section class="card stats-card">
+                    <div class="card-header">
+                        <h2>📊 System Information</h2>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-label">Agent Name</div>
+                            <div class="stat-value" id="agentName">-</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Version</div>
+                            <div class="stat-value" id="agentVersion">-</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Available Tools</div>
+                            <div class="stat-value" id="toolCount">-</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Status</div>
+                            <div class="stat-value" id="agentStatus">-</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SOLUTION TAB -->
+            <div id="solution" class="tab-panel">
+                <section class="card">
+                    <div class="card-header">
+                        <h2>💡 Our Solutions</h2>
+                    </div>
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <div class="solution-icon">🤖</div>
+                            <h3>AI-Powered CRM</h3>
+                            <p>Intelligent customer relationship management powered by artificial intelligence</p>
+                        </div>
+                        <div class="solution-card">
+                            <div class="solution-icon">📊</div>
+                            <h3>Analytics & Insights</h3>
+                            <p>Deep insights into customer behavior and trends</p>
+                        </div>
+                        <div class="solution-card">
+                            <div class="solution-icon">🔐</div>
+                            <h3>Security & Compliance</h3>
+                            <p>Enterprise-grade security and data protection</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PRODUCT TAB -->
+            <div id="product" class="tab-panel">
+                <section class="card">
+                    <div class="card-header">
+                        <h2>📦 Products</h2>
+                    </div>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">🤖</div>
+                            <h3>AI CRM Assistant</h3>
+                            <p>ผู้ช่วยจัดการลูกค้าอัจฉริยะ ตอบคำถาม ดูแลลูกค้า และสร้างงานอัตโนมัติ</p>
+                            <span class="badge">AI</span>
+                            <div style="margin-top:12px">
+                                <a href="agent.html" class="link-button">ลองใช้งาน →</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">🎯</div>
+                            <h3>CRM Suite</h3>
+                            <p>Complete customer management solution with AI integration</p>
+                            <span class="badge">Pro</span>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">⚡</div>
+                            <h3>Automation Studio</h3>
+                            <p>Workflow automation, email sequences and task scheduling</p>
+                            <span class="badge">Automation</span>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">🔗</div>
+                            <h3>Integrations</h3>
+                            <p>เชื่อมต่อกับระบบอีเมล, ชำระเงิน, และเครื่องมือการตลาด</p>
+                            <span class="badge">API</span>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">📱</div>
+                            <h3>Mobile & PWA</h3>
+                            <p>รองรับการใช้งานบนมือถือและติดตั้งเป็นแอพ PWA</p>
+                            <span class="badge">Mobile</span>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">🔐</div>
+                            <h3>Security & Compliance</h3>
+                            <p>Enterprise-grade security and data protection</p>
+                            <span class="badge">Secure</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- LEARN TAB -->
+            <div id="learn" class="tab-panel">
+                <section class="card">
+                    <div class="card-header">
+                        <h2>📚 Learning Resources</h2>
+                    </div>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <h3>📖 Documentation</h3>
+                            <p>Complete API documentation and guides</p>
+                            <a href="#" class="link-button">Read Docs →</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🎓 Tutorials</h3>
+                            <p>Step-by-step tutorials for getting started</p>
+                            <a href="#" class="link-button">View Tutorials →</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>💬 Community</h3>
+                            <p>Connect with other users and experts</p>
+                            <a href="#" class="link-button">Join Community →</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- CONTACT TAB -->
+            <div id="contact" class="tab-panel">
+                <section class="card">
+                    <div class="card-header">
+                        <h2>📞 Get in Touch</h2>
+                    </div>
+                    <div class="contact-wrapper">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="contactName">Name:</label>
+                                <input type="text" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email:</label>
+                                <input type="email" id="contactEmail" placeholder="your@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message:</label>
+                                <textarea id="contactMessage" rows="5" placeholder="Your message..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <span class="info-icon">📧</span>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>support@aicrm.com</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon">📱</span>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon">📍</span>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p>123 Tech Street, Tech City, TC 12345</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AI Chatbot Web Agent - CRM Assistant | Built with FastAPI & Modern Web Technologies</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Confirm Delete</h3>
+            <p id="confirmMessage">Are you sure you want to delete this customer?</p>
+            <div class="modal-buttons">
+                <button id="confirmYes" class="btn btn-danger">Yes, Delete</button>
+                <button id="confirmNo" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.warn('SW registration failed', err));
+        }
+    </script>
+</body>
+</html>

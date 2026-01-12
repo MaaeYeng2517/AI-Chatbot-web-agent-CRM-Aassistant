@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก - AI CRM Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+</head>
+<body>
+    <div class="container">
+        <div id="site-header"></div>
+        <script src="include-header.js"></script>
+
+        <main class="main-content">
+            <div class="content" style="padding: 2rem;">
+                <section class="card">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <h2>ลงทะเบียน</h2>
+                            <form id="signupForm">
+                                <div class="form-group">
+                                    <label for="name">ชื่อ:</label>
+                                    <input id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">อีเมล:</label>
+                                    <input id="email" type="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">รหัสผ่าน:</label>
+                                    <input id="password" type="password" required>
+                                </div>
+                                <button class="btn btn-primary" type="submit">สมัคร</button>
+                                <div id="signupResult" style="margin-top:1rem; display:none"></div>
+                            </form>
+                        </div>
+                        <div>
+                            <h2>เข้าสู่ระบบ</h2>
+                            <form id="loginForm">
+                                <div class="form-group">
+                                    <label for="loginEmail">อีเมล:</label>
+                                    <input id="loginEmail" type="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loginPassword">รหัสผ่าน:</label>
+                                    <input id="loginPassword" type="password" required>
+                                </div>
+                                <button class="btn btn-primary" type="submit">เข้าสู่ระบบ</button>
+                                <div id="loginResult" style="margin-top:1rem; display:none"></div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>ผู้ช่วยจัดการ AI Chatbot Web Agent - CRM</p>
+        </footer>
+    </div>
+
+    <script>
+        async function postJson(url, data){
+            const res = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+            return res;
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const box = document.getElementById('signupResult');
+            box.style.display='none';
+            try{
+                const res = await postJson('/signup', {name, email, password});
+                if(res.ok){
+                    box.style.display='block'; box.style.color='#10b981'; box.textContent='สมัครเรียบร้อยแล้ว';
+                    e.target.reset();
+                } else {
+                    const j = await res.json();
+                    box.style.display='block'; box.style.color='#f59e0b'; box.textContent=j.detail || 'เกิดข้อผิดพลาด';
+                }
+            }catch(err){ box.style.display='block'; box.style.color='#f59e0b'; box.textContent='ไม่สามารถเชื่อมต่อ backend'; }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const box = document.getElementById('loginResult');
+            box.style.display='none';
+            try{
+                const res = await postJson('/login', {email, password});
+                if(res.ok){
+                    const j = await res.json();
+                    box.style.display='block'; box.style.color='#10b981'; box.textContent='เข้าสู่ระบบสำเร็จ';
+                    // save token for later
+                    localStorage.setItem('auth_token', j.token);
+                } else {
+                    const j = await res.json();
+                    box.style.display='block'; box.style.color='#f59e0b'; box.textContent=j.detail || 'เข้าสู่ระบบไม่สำเร็จ';
+                }
+            }catch(err){ box.style.display='block'; box.style.color='#f59e0b'; box.textContent='ไม่สามารถเชื่อมต่อ backend'; }
+        });
+
+        // register sw
+        if('serviceWorker' in navigator){ navigator.serviceWorker.register('/service-worker.js').catch(()=>{}); }
+    </script>
+</body>
+</html>

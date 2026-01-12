@@ -1,0 +1,24 @@
+/* General */
+body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#f3f4f6; }
+nav { background:#2563eb; color:white; padding:1rem; position:fixed; width:100%; top:0; z-index:100; }
+nav .container { display:flex; justify-content:space-between; align-items:center; }
+nav button { background:none; border:none; color:white; cursor:pointer; font-weight:bold; margin-left:1rem; }
+nav button:hover { text-decoration:underline; }
+section { padding:5rem 1rem 2rem; min-height:100vh; }
+h2,h3 { margin-bottom:0.5rem; }
+button.primary { background:#2563eb; color:white; padding:0.5rem 1rem; border:none; border-radius:0.25rem; cursor:pointer; font-weight:bold; }
+button.primary:hover { background:#1d4ed8; }
+
+/* Tabs */
+.tab, .instructor-tab { display:none; }
+.tab.active-tab, .instructor-tab.active-tab { display:block; }
+
+/* Lessons */
+.lesson { cursor:pointer; padding:0.5rem; border-radius:0.25rem; }
+.lesson:hover { background:#eff6ff; }
+.lesson.active-lesson { background:#dbeafe; font-weight:bold; }
+
+/* Quiz */
+.quiz-option { padding:0.5rem; border:1px solid #d1d5db; border-radius:0.25rem; cursor:pointer; margin-bottom:0.5rem; }
+.quiz-option:hover { background:#e0f2fe; }
+.quiz-option.selected { background:#bae6fd; }
